@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */; };
-		FE8A0EAF1C7F78DF006B4C5C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAE1C7F78DF006B4C5C /* FirstViewController.swift */; };
-		FE8A0EB11C7F78DF006B4C5C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EB01C7F78DF006B4C5C /* SecondViewController.swift */; };
+		FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */; };
+		FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */; };
 		FE8A0EB41C7F78DF006B4C5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */; };
 		FE8A0EB61C7F78DF006B4C5C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */; };
 		FE8A0EB91C7F78DF006B4C5C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */; };
 		FE8A0EC51C7F78DF006B4C5C /* RoomEaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */; };
+		FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +31,15 @@
 		FE8A0EA71C7F78DF006B4C5C /* RoomEase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomEase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8A0EAB1C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE8A0EAE1C7F78DF006B4C5C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		FE8A0EB01C7F78DF006B4C5C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		FE8A0EB31C7F78DF006B4C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FE8A0EB81C7F78DF006B4C5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		FE8A0EBE1C7F78DF006B4C5C /* RoomEaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomEaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8A0EC31C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEaseTests.swift; sourceTree = "<group>"; };
+		FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
-				FE8A0EAE1C7F78DF006B4C5C /* FirstViewController.swift */,
-				FE8A0EB01C7F78DF006B4C5C /* SecondViewController.swift */,
+				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
+				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
+				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
 				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
 				FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */,
 				FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */,
@@ -216,9 +219,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE8A0EB11C7F78DF006B4C5C /* SecondViewController.swift in Sources */,
+				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
+				FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
-				FE8A0EAF1C7F78DF006B4C5C /* FirstViewController.swift in Sources */,
+				FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +426,7 @@
 				FE8A0ECA1C7F78DF006B4C5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE8A0ECB1C7F78DF006B4C5C /* Build configuration list for PBXNativeTarget "RoomEaseTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +435,7 @@
 				FE8A0ECD1C7F78DF006B4C5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
