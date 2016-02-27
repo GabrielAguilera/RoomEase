@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Home-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="RoomEase" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,13 +81,13 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="second" id="cPa-gy-q4n" userLabel="Chat"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="Chat" id="cPa-gy-q4n" userLabel="Chat"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="732" y="460"/>
         </scene>
-        <!--User-->
+        <!--user-->
         <scene sceneID="paB-9w-hoK">
             <objects>
                 <viewController id="WdB-Vm-TUx" sceneMemberID="viewController">
@@ -98,9 +98,17 @@
                     <view key="view" contentMode="scaleToFill" id="xIQ-wS-gcF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user's page" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98q-9q-wG6">
+                                <rect key="frame" x="278" y="203" width="130" height="109"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="User" selectedImage="first" id="iBd-ua-Lao"/>
+                    <tabBarItem key="tabBarItem" title="user" image="User" id="iBd-ua-Lao"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdT-yn-gIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -126,9 +134,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="128"/>
+            <point key="canvasLocation" x="10" y="140"/>
         </scene>
-        <!--First-->
+        <!--Home View Controller-->
         <scene sceneID="EF3-dw-2vB">
             <objects>
                 <viewController id="DDg-Zi-9WZ" customClass="HomeViewController" customModule="RoomEase" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,15 +171,17 @@
                             <constraint firstItem="8BJ-HJ-rNh" firstAttribute="centerX" secondItem="JLQ-yr-p87" secondAttribute="centerX" id="qGU-ag-DKa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="2qu-e5-jeK"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHH-H7-2af" sceneMemberID="firstResponder"/>
+                <tabBarItem title="Home" image="Home" selectedImage="Home" id="2qu-e5-jeK"/>
             </objects>
             <point key="canvasLocation" x="738" y="-298"/>
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Chat" width="32" height="32"/>
+        <image name="Home" width="32" height="32"/>
+        <image name="User" width="32" height="32"/>
     </resources>
 </document>
