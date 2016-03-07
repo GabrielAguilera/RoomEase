@@ -10,9 +10,16 @@ import UIKit
 
 class UserViewController: UIViewController {
     
+    // MARK: Properties
+    
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userPoints: UILabel!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+         // Do any additional setup after loading the view, typically from a nib.
+
+
     }
     
     override func didReceiveMemoryWarning() {
