@@ -36,7 +36,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error == nil {
             print("login complete")
-            //            self.performSegueWithIdentifier("shownew", sender: self)
+//            self.performSegueWithIdentifier("LoginToUser", sender: nil)
+            dispatch_async(dispatch_get_main_queue()) {
+                print("running segue")
+                self.performSegueWithIdentifier("LoginToUser", sender: nil)
+            }
         } else {
             print(error.localizedDescription)
         }
