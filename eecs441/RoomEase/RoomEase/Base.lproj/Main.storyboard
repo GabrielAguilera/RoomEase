@@ -26,7 +26,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="taskTable" destination="Rhv-4c-RiW" id="KvD-pD-fkf"/>
+                        <outlet property="taskTableView" destination="Rhv-4c-RiW" id="REv-yt-Wz2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
