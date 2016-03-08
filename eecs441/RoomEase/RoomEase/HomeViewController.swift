@@ -22,13 +22,13 @@ class HomeViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Not logged in")
         } else {
             print("Logged in")
-            let loginButton = FBSDKLoginButton()
-            loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-            loginButton.center = self.view.center
-            
-            loginButton.delegate = self
-            self.view.addSubview(loginButton)
         }
+        let loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.center = self.view.center
+        
+        loginButton.delegate = self
+        self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
