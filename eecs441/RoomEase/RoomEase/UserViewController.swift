@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     
@@ -20,9 +20,8 @@ class UserViewController: UIViewController {
     @IBOutlet weak var userTableInfoControl: UISegmentedControl!
     
     
-    let privateList:[String] = ["Private item 1","Private item 2"]
-    let friendsAndFamily:[String] = ["Friend item 1","Friend item 2", "Friends item 3"]
-    let publicList:[String] = ["Public item 1", "Public item 2", "Public item 3", "Public item 4"]
+    let taskList:[String] = ["Unload the Dishwasher","Clean first floor toilet"]
+    let moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
     
   
     override func viewDidLoad() {
@@ -39,14 +38,14 @@ class UserViewController: UIViewController {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
-        
+        print("inside table view")
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
-            returnValue = privateList.count
+            returnValue = taskList.count
             break
         case 1:
-            returnValue = friendsAndFamily.count
+            returnValue = moneyList.count
             break
             
         default:
@@ -61,15 +60,17 @@ class UserViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        print("inside cell for row whatever view")
+
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
-            myCell.textLabel!.text = privateList[indexPath.row]
+            myCell.textLabel!.text = taskList[indexPath.row]
             break
         case 1:
-            myCell.textLabel!.text = friendsAndFamily[indexPath.row]
+            myCell.textLabel!.text = moneyList[indexPath.row]
             break
             
         default:
