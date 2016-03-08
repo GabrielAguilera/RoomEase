@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; settings = {ASSET_TAGS = (); }; };
+		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
+		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
+		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; };
+		FE51E9151C8F43A0004116AA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FE51E9141C8F43A0004116AA /* logo.png */; };
 		FE5FEC951C8DF51700D264D6 /* Soloway_hs.png in Resources */ = {isa = PBXBuildFile; fileRef = FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */; };
 		FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */; };
 		FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */; };
@@ -35,6 +36,7 @@
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		FE51E9141C8F43A0004116AA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Soloway_hs.png; sourceTree = "<group>"; };
 		FE8A0EA71C7F78DF006B4C5C /* RoomEase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomEase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8A0EAB1C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,9 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */,
 				A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */,
 				A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */,
-				A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +83,7 @@
 				FE8A0EC11C7F78DF006B4C5C /* RoomEaseTests */,
 				FE8A0EA81C7F78DF006B4C5C /* Products */,
 				FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */,
+				FE51E9141C8F43A0004116AA /* logo.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +187,11 @@
 					FE8A0EA61C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 4J5RU7K988;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 0;
+							};
+						};
 					};
 					FE8A0EBD1C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
@@ -217,6 +225,7 @@
 			files = (
 				FE8A0EB41C7F78DF006B4C5C /* Main.storyboard in Resources */,
 				FE5FEC951C8DF51700D264D6 /* Soloway_hs.png in Resources */,
+				FE51E9151C8F43A0004116AA /* logo.png in Resources */,
 				FE8A0EB91C7F78DF006B4C5C /* LaunchScreen.xib in Resources */,
 				FE8A0EB61C7F78DF006B4C5C /* Images.xcassets in Resources */,
 			);
@@ -369,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoomEase/RoomEase.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -387,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoomEase/RoomEase.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
