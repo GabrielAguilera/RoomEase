@@ -59,6 +59,7 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <string>fb1997772477113763</string>
+                <string>fbauth2</string>
             </array>
         </dict>
     </array>
@@ -100,5 +101,6 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
+    
 </dict>
 </plist>
