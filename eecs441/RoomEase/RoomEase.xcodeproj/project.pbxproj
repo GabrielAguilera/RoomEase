@@ -7,17 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
 		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
 		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; };
 		FE51E9151C8F43A0004116AA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FE51E9141C8F43A0004116AA /* logo.png */; };
-=======
-		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		A2A51DEA1C8E718200EF8FA3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A51DE91C8E718200EF8FA3 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
->>>>>>> 45aa9de6eb52a277e2174442ecef7fcba1a88a94
 		FE5FEC951C8DF51700D264D6 /* Soloway_hs.png in Resources */ = {isa = PBXBuildFile; fileRef = FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */; };
 		FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */; };
 		FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */; };
@@ -43,11 +36,7 @@
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		FE51E9141C8F43A0004116AA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-=======
-		A2A51DE91C8E718200EF8FA3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
->>>>>>> 45aa9de6eb52a277e2174442ecef7fcba1a88a94
 		FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Soloway_hs.png; sourceTree = "<group>"; };
 		FE8A0EA71C7F78DF006B4C5C /* RoomEase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomEase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8A0EAB1C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
-				A2A51DE91C8E718200EF8FA3 /* LoginViewController.swift */,
 				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
 				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
@@ -260,7 +248,6 @@
 				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
 				FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
-				A2A51DEA1C8E718200EF8FA3 /* LoginViewController.swift in Sources */,
 				FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
