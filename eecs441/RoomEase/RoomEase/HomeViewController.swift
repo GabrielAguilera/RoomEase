@@ -12,18 +12,14 @@ import FBSDKLoginKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSDKLoginButtonDelegate {
 
-    @IBOutlet weak var taskTableView: UITableView!
+    @IBOutlet weak var taskTable: UITableView!
     
-    func tableView(taskTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(taskTable: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
     
-    func tableView(taskTableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(taskTable: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UITableViewCell();
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
     }
     
     override func viewDidLoad() {
