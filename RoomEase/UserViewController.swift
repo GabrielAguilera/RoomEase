@@ -30,7 +30,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,6 +113,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             pointsNum += pointValue
             self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
             self.shareData.roommateRankingsChanged = true
+            self.shareData.bestRoommate = true // TODO implement logic for determining best roommate
             
             UIView.transitionWithView(self.userPoints, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                     self.userPoints.text = "+" +  String(pointsNum)

@@ -27,5 +27,6 @@ class ShareData {
     ]
     
     var roommateRankingsChanged = false
+    var bestRoommate = false
     
 }

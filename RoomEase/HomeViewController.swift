@@ -41,6 +41,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.taskTableView.delegate = self
     }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        if(self.shareData.roommateRankingsChanged && self.homeSegmentedControl.selectedSegmentIndex == 0) {
+            tableUpdateForRoommateRankings()
+        }
+        else {
+            taskTableView.reloadData()
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,8 +104,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        print("inside cell for row whatever view")
-        
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         let sortedNames = retrieveRoommateRankings()
         let sortedTasks = retrieveTaskRankings()
@@ -105,7 +114,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
-            if(self.shareData.roommateRankingsChanged) {
+            if(self.shareData.bestRoommate) {
                 bestRoommateLabel.hidden = false
             }
             else {
@@ -151,19 +160,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
-        
-        if(shareData.roommateRankingsChanged) {
-            UIView.transitionWithView(taskTableView,
-                duration:1.2,
-                options:.TransitionCrossDissolve,
-                animations:
-                { () -> Void in
-                    self.taskTableView.reloadData()
-                },
-                completion: nil);
+        if(self.shareData.roommateRankingsChanged) {
+            tableUpdateForRoommateRankings()
         }
         else {
-            taskTableView.reloadData()
+            self.taskTableView.reloadData()
         }
     }
     
@@ -178,7 +179,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
+
+    func tableUpdateForRoommateRankings() {
+            UIView.transitionWithView(taskTableView,
+                duration:1.2,
+                options:.TransitionCrossDissolve,
+                animations:
+                { () -> Void in
+                    self.taskTableView.reloadData()
+                },
+                completion: nil);
+            shareData.roommateRankingsChanged = false
+    }
+
 }
+
 
 
 
