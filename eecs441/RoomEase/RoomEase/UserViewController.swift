@@ -19,9 +19,9 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userTaskTable: UITableView!
     @IBOutlet weak var userTableInfoControl: UISegmentedControl!
     
-    
-    let taskList:[String] = ["Unload the Dishwasher","Clean first floor toilet"]
     let moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
+    
+    let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
     
   
     override func viewDidLoad() {
@@ -60,15 +60,17 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        print("inside cell for row whatever view")
-
+        let sortedTasks = retrieveTaskRankings()
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
-            myCell.textLabel!.text = taskList[indexPath.row]
+            let pointValue = String(taskList[sortedTasks[indexPath.row]]!)
+            let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
+            myCell.textLabel!.text = cellText
             break
+
         case 1:
             myCell.textLabel!.text = moneyList[indexPath.row]
             break
@@ -85,6 +87,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
         
         userTaskTable.reloadData()
+    }
+    
+    func retrieveTaskRankings() -> Array<String> {
+        let sortedArray = taskList.sort({$0.0 < $1.0})
+        let tasks: [String] = sortedArray.map {return $0.0 }
+        return tasks
     }
     
     
