@@ -26,4 +26,6 @@ class ShareData {
         "Mitch Gildenberg":15,"Lindsay Smith":10, "Jessi Aboukasm":10, "Gabriel Aguilera":20
     ]
     
+    var roommateRankingsChanged = false
+    
 }

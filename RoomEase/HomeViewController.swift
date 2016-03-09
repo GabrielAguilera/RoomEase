@@ -15,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addTaskButton: UIButton!
+    @IBOutlet weak var bestRoommateLabel: UILabel!
         
 
     
@@ -104,12 +105,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
+            if(self.shareData.roommateRankingsChanged) {
+                bestRoommateLabel.hidden = false
+            }
+            else {
+                bestRoommateLabel.hidden = true
+            }
             break
         case 1:
             let pointValue = String(taskList[sortedTasks[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
+            bestRoommateLabel.hidden = true
             break
             
         default:
@@ -144,7 +152,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
         
-        taskTableView.reloadData()
+        if(shareData.roommateRankingsChanged) {
+            UIView.transitionWithView(taskTableView,
+                duration:1.2,
+                options:.TransitionCrossDissolve,
+                animations:
+                { () -> Void in
+                    self.taskTableView.reloadData()
+                },
+                completion: nil);
+        }
+        else {
+            taskTableView.reloadData()
+        }
     }
     
     func retrieveRoommateRankings() -> Array<String> {

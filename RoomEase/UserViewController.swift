@@ -112,6 +112,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             pointsNum += pointValue
             self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
+            self.shareData.roommateRankingsChanged = true
             
             UIView.transitionWithView(self.userPoints, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                     self.userPoints.text = "+" +  String(pointsNum)

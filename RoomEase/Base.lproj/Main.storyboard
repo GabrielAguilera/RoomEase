@@ -59,12 +59,19 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="ovG-Yx-q5Y"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are the best roommate!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSw-ES-ChP">
+                                <rect key="frame" x="81" y="90" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                <color key="textColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="addTaskButton" destination="Jxe-k5-R6c" id="VLG-VJ-FXS"/>
+                        <outlet property="bestRoommateLabel" destination="hSw-ES-ChP" id="DE3-e6-Xtj"/>
                         <outlet property="homeSegmentedControl" destination="ioQ-xj-XFb" id="bWB-6s-c6d"/>
                         <outlet property="taskTableView" destination="Rhv-4c-RiW" id="Rca-Vr-Ivr"/>
                     </connections>
