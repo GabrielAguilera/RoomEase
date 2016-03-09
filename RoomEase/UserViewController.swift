@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     
@@ -20,25 +20,25 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userTableInfoControl: UISegmentedControl!
     
     let moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
+    var taskList:[String:Int] = ["Pick up toilet paper":15]
     
-    let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
+    let shareData = ShareData.sharedInstance
+
     
-  
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
         
     }
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+  public   
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
-        print("inside table view")
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
@@ -58,7 +58,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let sortedTasks = retrieveTaskRankings()
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
@@ -79,9 +79,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
             
         }
-        
-        myCell.textLabel!.textColor = UIColor.whiteColor()
-        
         return myCell
     }
     
@@ -92,6 +89,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func retrieveTaskRankings() -> Array<String> {
+        taskList = taskList.merge(self.shareData.userSelectedTasks)
         let sortedArray = taskList.sort({$0.0 < $1.0})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
@@ -99,3 +97,15 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
 }
+
+extension Dictionary {
+    func merge(dict: Dictionary<Key,Value>) -> Dictionary<Key,Value> {
+        var mutableCopy = self
+        for (key, value) in dict {
+            // If both dictionaries have a value for same key, the value of the other dictionary is used.
+            mutableCopy[key] = value
+        }
+        return mutableCopy
+    }
+}
+

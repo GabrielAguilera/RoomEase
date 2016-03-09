@@ -20,6 +20,7 @@
 		FE8A0EB91C7F78DF006B4C5C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */; };
 		FE8A0EC51C7F78DF006B4C5C /* RoomEaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */; };
 		FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */; };
+		FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		FE8A0EC31C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEaseTests.swift; sourceTree = "<group>"; };
 		FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedUserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
 				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
+				FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */,
 				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
 				FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */,
 				FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */,
@@ -249,6 +252,7 @@
 				FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
 				FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */,
+				FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

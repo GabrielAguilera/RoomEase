@@ -14,19 +14,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var addTaskButton: UIButton!
-    
+        
     let roommateRankings:[String:Int] = [
         "Mitch":15,"Soloway":10
     ]
     
-    let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
-    
-    var userSelectedTasks:[String:Int]!
-    
+    let shareData = ShareData.sharedInstance
 
-    //let taskList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
+    
+    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +39,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loginButton.delegate = self
         //self.view.addSubview(loginButton)
+        
+        self.taskTableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,26 +122,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return myCell
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let sortedTasks = retrieveTaskRankings()
         let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
             print("Add Task button tapped")
-            self.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
+            self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
+            
+            
         }
         task.backgroundColor = UIColor.lightGrayColor()
         
         return [task]
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
-        return true
-    }
-    
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // you need to implement this method too or you can't swipe to display the actions
-    }
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
         
@@ -160,10 +160,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
-
-    
-    
-
-
 }
+
+
+
 
