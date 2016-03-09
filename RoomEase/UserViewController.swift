@@ -113,7 +113,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             pointsNum += pointValue
             self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
             
-            self.userPoints.text = "+" +  String(pointsNum)
+            UIView.transitionWithView(self.userPoints, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                    self.userPoints.text = "+" +  String(pointsNum)
+                }, completion: {
+                    (value: Bool) in
+            })
             
             self.taskList.removeValueForKey(sortedTasks[indexPath.row])
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
