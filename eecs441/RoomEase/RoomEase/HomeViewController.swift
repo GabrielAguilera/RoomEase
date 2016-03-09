@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
     
+    var userSelectedTasks:[String:Int]!
+    
 
     //let taskList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
     
@@ -84,6 +86,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -115,6 +123,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return myCell
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let sortedTasks = retrieveTaskRankings()
+        let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
+            print("Add Task button tapped")
+            self.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
+        }
+        task.backgroundColor = UIColor.lightGrayColor()
+        
+        return [task]
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // the cells you would like the actions to appear needs to be editable
+        return true
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // you need to implement this method too or you can't swipe to display the actions
+    }
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
         
@@ -132,8 +160,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
-    
-    
+
     
     
 
