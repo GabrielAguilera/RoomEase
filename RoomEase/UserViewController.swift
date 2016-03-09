@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     
@@ -25,17 +25,16 @@ public class UserViewController: UIViewController, UITableViewDataSource, UITabl
     let shareData = ShareData.sharedInstance
 
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
         
     }
     
-    override public func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  public   
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
@@ -58,7 +57,7 @@ public class UserViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let sortedTasks = retrieveTaskRankings()
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
@@ -94,6 +93,44 @@ public class UserViewController: UIViewController, UITableViewDataSource, UITabl
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let sortedTasks = retrieveTaskRankings()
+        let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
+            print("Completed Button Tapped")
+            
+            let pointValue = self.taskList[sortedTasks[indexPath.row]]!
+            var pointsNum:Int = (self.userPoints.text! as NSString).integerValue
+            
+            pointsNum += pointValue
+            self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
+            
+            self.userPoints.text = "+" +  String(pointsNum)
+            
+            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        task.backgroundColor = UIColor.lightGrayColor()
+        
+        return [task]
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }

@@ -22,5 +22,8 @@ class ShareData {
     }
     
     var userSelectedTasks:[String:Int] = [:]
+    var roommateRankings:[String:Int] = [
+        "Mitch Gildenberg":15,"Lindsay Smith":10, "Jessi Aboukasm":10, "Gabriel Aguilera":20
+    ]
     
 }

@@ -16,9 +16,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addTaskButton: UIButton!
         
-    let roommateRankings:[String:Int] = [
-        "Mitch":15,"Soloway":10
-    ]
+
     
     let shareData = ShareData.sharedInstance
 
@@ -70,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            returnValue = roommateRankings.count
+            returnValue = self.shareData.roommateRankings.count
             break
         case 1:
             returnValue = taskList.count
@@ -102,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            let pointValue = String(roommateRankings[sortedNames[indexPath.row]]!)
+            let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
@@ -137,7 +135,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
             self.taskList.removeValueForKey(sortedTasks[indexPath.row])
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-            
         }
         task.backgroundColor = UIColor.lightGrayColor()
         
@@ -151,13 +148,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func retrieveRoommateRankings() -> Array<String> {
-        let sortedArray = roommateRankings.sort({$0.0 < $1.0})
+        let sortedArray = self.shareData.roommateRankings.sort({$0.1 > $1.1})
         let nameList: [String] = sortedArray.map {return $0.0 }
         return nameList
     }
 
     func retrieveTaskRankings() -> Array<String> {
-        let sortedArray = taskList.sort({$0.0 < $1.0})
+        let sortedArray = taskList.sort({$0.1 > $1.1})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
