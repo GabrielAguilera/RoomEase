@@ -135,7 +135,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
             print("Add Task button tapped")
             self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
-            
+            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         }
         task.backgroundColor = UIColor.lightGrayColor()
