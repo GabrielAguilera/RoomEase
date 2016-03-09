@@ -20,10 +20,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userTableInfoControl: UISegmentedControl!
     
     let moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
+    var taskList:[String:Int] = ["Pick up toilet paper":15]
     
-    let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
+    let shareData = ShareData.sharedInstance
+
     
-  
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
@@ -34,11 +35,9 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
-        print("inside table view")
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
@@ -79,9 +78,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
             
         }
-        
-        myCell.textLabel!.textColor = UIColor.whiteColor()
-        
         return myCell
     }
     
@@ -92,10 +88,61 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func retrieveTaskRankings() -> Array<String> {
+        taskList = taskList.merge(self.shareData.userSelectedTasks)
         let sortedArray = taskList.sort({$0.0 < $1.0})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let sortedTasks = retrieveTaskRankings()
+        let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
+            print("Completed Button Tapped")
+            
+            let pointValue = self.taskList[sortedTasks[indexPath.row]]!
+            var pointsNum:Int = (self.userPoints.text! as NSString).integerValue
+            
+            pointsNum += pointValue
+            self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
+            
+            self.userPoints.text = "+" +  String(pointsNum)
+            
+            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        task.backgroundColor = UIColor.lightGrayColor()
+        
+        return [task]
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
+
+extension Dictionary {
+    func merge(dict: Dictionary<Key,Value>) -> Dictionary<Key,Value> {
+        var mutableCopy = self
+        for (key, value) in dict {
+            // If both dictionaries have a value for same key, the value of the other dictionary is used.
+            mutableCopy[key] = value
+        }
+        return mutableCopy
+    }
+}
+

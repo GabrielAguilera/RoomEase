@@ -14,17 +14,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var addTaskButton: UIButton!
-    
-    let roommateRankings:[String:Int] = [
-        "Mitch":15,"Soloway":10
-    ]
-    
-    let taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35, "Pick up toilet paper":15]
-    
+        
 
-    //let taskList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
+    
+    let shareData = ShareData.sharedInstance
+
+    
+    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +37,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loginButton.delegate = self
         //self.view.addSubview(loginButton)
+        
+        self.taskTableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            returnValue = roommateRankings.count
+            returnValue = self.shareData.roommateRankings.count
             break
         case 1:
             returnValue = taskList.count
@@ -84,6 +83,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -95,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            let pointValue = String(roommateRankings[sortedNames[indexPath.row]]!)
+            let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
@@ -115,6 +120,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return myCell
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let sortedTasks = retrieveTaskRankings()
+        let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
+            print("Add Task button tapped")
+            self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
+            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        task.backgroundColor = UIColor.lightGrayColor()
+        
+        return [task]
+    }
+    
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
         
@@ -122,21 +148,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func retrieveRoommateRankings() -> Array<String> {
-        let sortedArray = roommateRankings.sort({$0.0 < $1.0})
+        let sortedArray = self.shareData.roommateRankings.sort({$0.1 > $1.1})
         let nameList: [String] = sortedArray.map {return $0.0 }
         return nameList
     }
 
     func retrieveTaskRankings() -> Array<String> {
-        let sortedArray = taskList.sort({$0.0 < $1.0})
+        let sortedArray = taskList.sort({$0.1 > $1.1})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
-    
-    
-    
-    
-
-
 }
+
+
+
 
