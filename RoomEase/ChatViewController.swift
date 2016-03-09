@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FBSDKMessengerShareKit
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       // [FBSDKMessageDialog showWithContent: delegate:nil];
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 

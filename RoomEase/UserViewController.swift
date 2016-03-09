@@ -80,6 +80,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
+        myCell.textLabel!.textColor = UIColor.whiteColor()
+        
         return myCell
     }
     
