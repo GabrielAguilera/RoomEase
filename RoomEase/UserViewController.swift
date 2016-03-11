@@ -19,16 +19,17 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userTaskTable: UITableView!
     @IBOutlet weak var userTableInfoControl: UISegmentedControl!
     
-    let moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
-    var taskList:[String:Int] = ["Pick up toilet paper":15]
+    var moneyList:[String] = ["Pay Mitch $2.25","Charge Jessi $32.00", "Pay Gabriel $16.75"]
     
     let shareData = ShareData.sharedInstance
 
     
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
-        
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        userTaskTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +42,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
-            returnValue = taskList.count
+            returnValue = self.shareData.userSelectedTasks.count
             break
         case 1:
             returnValue = moneyList.count
@@ -65,7 +66,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch(userTableInfoControl.selectedSegmentIndex)
         {
         case 0:
-            let pointValue = String(taskList[sortedTasks[indexPath.row]]!)
+            let pointValue = String(self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
             myCell.textLabel!.text = cellText
             break
@@ -88,8 +89,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func retrieveTaskRankings() -> Array<String> {
-        taskList = taskList.merge(self.shareData.userSelectedTasks)
-        let sortedArray = taskList.sort({$0.0 < $1.0})
+        let sortedArray = self.shareData.userSelectedTasks.sort({$0.0 < $1.0})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
@@ -107,7 +107,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
             print("Completed Button Tapped")
             
-            let pointValue = self.taskList[sortedTasks[indexPath.row]]!
+            let pointValue = self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!
             var pointsNum:Int = (self.userPoints.text! as NSString).integerValue
             
             pointsNum += pointValue
@@ -120,23 +120,19 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }, completion: {
                     (value: Bool) in
             })
-            
-            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            if(self.userTableInfoControl.selectedSegmentIndex == 0) {
+                self.shareData.userSelectedTasks.removeValueForKey(sortedTasks[indexPath.row])
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+            else {
+                self.moneyList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
         }
         task.backgroundColor = UIColor.lightGrayColor()
         
         return [task]
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }
