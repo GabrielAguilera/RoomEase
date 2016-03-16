@@ -104,9 +104,10 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let sortedTasks = retrieveTaskRankings()
+        
         let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
             print("Completed Button Tapped")
-            
+        if(self.userTableInfoControl.selectedSegmentIndex == 0) {
             let pointValue = self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!
             var pointsNum:Int = (self.userPoints.text! as NSString).integerValue
             
@@ -120,7 +121,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }, completion: {
                     (value: Bool) in
             })
-            if(self.userTableInfoControl.selectedSegmentIndex == 0) {
+            
                 self.shareData.userSelectedTasks.removeValueForKey(sortedTasks[indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             }
