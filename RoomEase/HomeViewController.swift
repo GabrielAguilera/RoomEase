@@ -16,28 +16,51 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var bestRoommateLabel: UILabel!
-        
-
     
     let shareData = ShareData.sharedInstance
+    let facebookLogin = FBSDKLoginManager()
 
-    
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (FBSDKAccessToken.currentAccessToken() == nil) {
-            print("Not logged in")
-        } else {
-            print("Logged in")
-        }
+        // Login prompt
+        facebookLogin.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil, handler: {
+            (facebookResult, facebookError) -> Void in
+            
+            if facebookError != nil {
+                
+            } else if facebookResult.isCancelled {
+                
+            } else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                
+                self.shareData.rootRef.authWithOAuthProvider("facebook", token: accessToken,
+                    withCompletionBlock: { error, authData in
+                        
+                        if error != nil {
+                            print("Login failed. \(error)")
+                            
+                        } else {
+                            print("Logged in! \(authData)")
+                        }
+                })
+            }
+        })
+        
+//        if (FBSDKAccessToken.currentAccessToken() == nil) {
+//            print("Not logged in")
+//        } else {
+//            print("Logged in")
+//        }
+        
         let loginButton = FBSDKLoginButton()
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.center = self.view.center
         
         loginButton.delegate = self
-        //self.view.addSubview(loginButton)
+        self.view.addSubview(loginButton)
         
         self.taskTableView.delegate = self
     }
