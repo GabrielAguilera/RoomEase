@@ -1,0 +1,37 @@
+{
+  "home" : {
+    "home1" : {
+      "members" : {
+        "aboukasm" : "true",
+        "gabrieag" : "true",
+        "mgild" : "true"
+      }
+    }
+  },
+  "tasks" : [ null, {
+    "assignedTo" : "null",
+    "points" : "50",
+    "title" : "Clean kitchen after party"
+  }, {
+    "assignedTo" : "null",
+    "points" : "35",
+    "title" : "Clean upstairs bathroom"
+  } ],
+  "users" : {
+    "aboukasm" : {
+      "homeId" : "home1",
+      "name" : "Jessi Aboukasm",
+      "points" : 10
+    },
+    "gabrieag" : {
+      "homeId" : "home1",
+      "name" : "Gabriel Aguilera",
+      "points" : 20
+    },
+    "mgild" : {
+      "homeId" : "home1",
+      "name" : "Mitch Gildenberg",
+      "points" : 15
+    }
+  }
+}
