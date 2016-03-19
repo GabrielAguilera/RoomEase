@@ -28,5 +28,5 @@ class ShareData {
     
     var roommateRankingsChanged = false
     var bestRoommate = false
-    
+    var currentUser = "Lindsay Smith"
 }

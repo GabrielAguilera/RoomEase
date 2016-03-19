@@ -197,6 +197,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             shareData.roommateRankingsChanged = false
     }
 
+    
+    // Mark Unwind Segues
+    @IBAction func cancelToHomeViewController(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
+        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
+            
+            //add the new player to the players array
+            if let task = taskViewDetailController.task {
+                self.taskList[task.name!] = task.pointVal
+                
+                //update the tableView
+                let indexPath = NSIndexPath(forRow: taskList.count-1, inSection: 0)
+                taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
+    }
+
+    
+    
+    
+    
 }
 
 

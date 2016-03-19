@@ -29,6 +29,8 @@
 		FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */; };
 		FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */; };
 		FED8B7191C900FB600CA6CBE /* lindsay.png in Resources */ = {isa = PBXBuildFile; fileRef = FED8B7181C900FB600CA6CBE /* lindsay.png */; };
+		FEDBD8FB1C9DED94003D7316 /* TaskViewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */; };
+		FEDBD8FD1C9DFD50003D7316 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBD8FC1C9DFD50003D7316 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedUserManager.swift; sourceTree = "<group>"; };
 		FED8B7181C900FB600CA6CBE /* lindsay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lindsay.png; sourceTree = "<group>"; };
+		FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewDetailController.swift; sourceTree = "<group>"; };
+		FEDBD8FC1C9DFD50003D7316 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */,
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
 				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
+				FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */,
+				FEDBD8FC1C9DFD50003D7316 /* Task.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
 				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
 				FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */,
@@ -279,7 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEDBD8FD1C9DFD50003D7316 /* Task.swift in Sources */,
 				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
+				FEDBD8FB1C9DED94003D7316 /* TaskViewDetailController.swift in Sources */,
 				FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
 				329B19F71C8FC7D60027AEA7 /* LoginViewController.swift in Sources */,
