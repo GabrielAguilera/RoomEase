@@ -31,12 +31,12 @@ class WelcomeViewController : UIViewController {
             (facebookResult, facebookError) -> Void in
             
             if facebookError != nil {
-                self.performSegueWithIdentifier("LoggedInSegue", sender: self)
                 // Segue to home if already logged in
+                self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
             } else if facebookResult.isCancelled {
-                // don't transition
+                // don't transition if it was canceled
             } else {
-                // If they just logged in, store some data.
+                // If they just logged in, store some data then segue
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
                 ref.authWithOAuthProvider("facebook", token: accessToken,
@@ -47,7 +47,7 @@ class WelcomeViewController : UIViewController {
                             
                         } else {
                             print("Logged in! \(authData)")
-                            self.performSegueWithIdentifier("LoggedInSegue", sender: self)
+                            self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
                         }
                 })
             }
