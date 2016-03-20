@@ -14,7 +14,6 @@ import UIKit
 class WelcomeViewController : UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signupButton: UIButton!
     
     @IBOutlet weak var loginStatusLabel: UILabel!
     

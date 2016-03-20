@@ -201,11 +201,6 @@
                                     <action selector="loginPressed:" destination="va8-hq-vN5" eventType="touchUpInside" id="Scg-rO-oAp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lv-je-qmN">
-                                <rect key="frame" x="149" y="400" width="98" height="46"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Sign Up"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-J5-SNf">
                                 <rect key="frame" x="163" y="476" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -220,7 +215,6 @@
                     <connections>
                         <outlet property="loginButton" destination="W78-5d-7du" id="YO2-Ah-pOS"/>
                         <outlet property="loginStatusLabel" destination="Mb1-J5-SNf" id="ndN-4W-uuo"/>
-                        <outlet property="signupButton" destination="7lv-je-qmN" id="fyK-Nx-2th"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umN-xI-o9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
