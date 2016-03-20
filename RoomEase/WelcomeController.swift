@@ -6,6 +6,7 @@
 //  Copyright © 2016 RoomEase - EECS 441. All rights reserved.
 //
 
+import CoreData
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
@@ -15,7 +16,23 @@ class WelcomeViewController : UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
         
-    override func viewDidLoad() {}
+    override func viewDidLoad() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.dataController.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do {
+            let user:NSArray =
+            try managedContext.executeFetchRequest(fetchRequest)
+            
+            if (user.count == 1) {
+                print("Existing user found. Logging in with old credentials.")
+                self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
+            }
+            print("No user data was saved to core data.")
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
     
     override func viewDidAppear(animated: Bool) {}
     
@@ -31,12 +48,11 @@ class WelcomeViewController : UIViewController {
             (facebookResult, facebookError) -> Void in
             
             if facebookError != nil {
-                // Segue to home if already logged in
-                self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
+                print("Facebook login failed. Error \(facebookError)")
             } else if facebookResult.isCancelled {
-                // don't transition if it was canceled
+                print("Facebook login was cancelled.")
             } else {
-                // If they just logged in, store some data then segue
+                // Successful login! Store some data then segue.
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
                 ref.authWithOAuthProvider("facebook", token: accessToken,
@@ -47,10 +63,24 @@ class WelcomeViewController : UIViewController {
                             
                         } else {
                             print("Logged in! \(authData)")
-                            print(authData.providerData["profileImageURL"])
-                            print(authData.providerData["displayName"])
-                            print(authData.uid)
-                            print(authData.provider)
+                            
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            let managedContext = appDelegate.dataController.managedObjectContext
+                            let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
+                            
+                            let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                            user.setValue(authData.uid, forKey: "uid")
+                            user.setValue(authData.providerData["displayName"], forKey: "name")
+                            
+                            do {
+                                try managedContext.save()
+                            } catch { print("Couldn't save to core data.") }
+                            
+//                            user.setValue(authData.token, forKey: "firebaseToken")
+//                            print(authData.providerData["profileImageURL"])
+//                            print(authData.providerData["displayName"])
+//                            print(authData.uid)
+//                            print(authData.provider)
                             
                             self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
                         }
