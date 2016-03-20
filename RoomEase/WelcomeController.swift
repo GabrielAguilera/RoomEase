@@ -47,6 +47,11 @@ class WelcomeViewController : UIViewController {
                             
                         } else {
                             print("Logged in! \(authData)")
+                            print(authData.providerData["profileImageURL"])
+                            print(authData.providerData["displayName"])
+                            print(authData.uid)
+                            print(authData.provider)
+                            
                             self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
                         }
                 })
@@ -59,4 +64,9 @@ class WelcomeViewController : UIViewController {
             print("Preparing for segue to home view.")
         }
     }
+    
+    // Functions to implement if we use FBSDKLoginButtonDelegate protocol:
+    /* func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
+     * func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
+     */
 }
