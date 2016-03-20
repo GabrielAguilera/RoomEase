@@ -208,6 +208,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="loginButton" destination="W78-5d-7du" id="YO2-Ah-pOS"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="LoggedInSegue" id="6tK-lH-K6d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umN-xI-o9V" userLabel="First Responder" sceneMemberID="firstResponder"/>

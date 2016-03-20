@@ -31,10 +31,12 @@ class WelcomeViewController : UIViewController {
             (facebookResult, facebookError) -> Void in
             
             if facebookError != nil {
-                
+                self.performSegueWithIdentifier("LoggedInSegue", sender: self)
+                // Segue to home if already logged in
             } else if facebookResult.isCancelled {
-                
+                // don't transition
             } else {
+                // If they just logged in, store some data.
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
                 ref.authWithOAuthProvider("facebook", token: accessToken,
@@ -45,9 +47,16 @@ class WelcomeViewController : UIViewController {
                             
                         } else {
                             print("Logged in! \(authData)")
+                            self.performSegueWithIdentifier("LoggedInSegue", sender: self)
                         }
                 })
             }
         })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "LoggedInSegue" {
+            print("Preparing for segue to home view.")
+        }
     }
 }
