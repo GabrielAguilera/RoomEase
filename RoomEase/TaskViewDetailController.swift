@@ -17,6 +17,7 @@ class TaskViewDetailController: UITableViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var pointTextField: UITextField!
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +50,7 @@ class TaskViewDetailController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SaveTaskDetail" {
-            task = Task(name: nameTextField.text, assigner:shareData.currentUser, assignee: "", points: 5)
+            task = Task(name: nameTextField.text, assigner:shareData.currentUser, assignee: "", points: 5)            
         }
 //        if segue.identifier == "PickRoommate" {
 //            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {

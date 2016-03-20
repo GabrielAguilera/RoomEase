@@ -29,4 +29,9 @@ class ShareData {
     var roommateRankingsChanged = false
     var bestRoommate = false
     var currentUser = "Lindsay Smith"
+    
+    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
+
+    
+    
 }
