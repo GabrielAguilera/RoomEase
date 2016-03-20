@@ -13,6 +13,7 @@
 		324CC3131C9A45C0009A2230 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3121C9A45C0009A2230 /* CFNetwork.framework */; };
 		324CC3151C9A45C7009A2230 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3141C9A45C7009A2230 /* Security.framework */; };
 		324CC3171C9A45CF009A2230 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3161C9A45CF009A2230 /* SystemConfiguration.framework */; };
+		3291F0B81C9DF7FB00E7F281 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0B71C9DF7FB00E7F281 /* WelcomeController.swift */; };
 		329B19F71C8FC7D60027AEA7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */; };
 		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
 		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
@@ -48,6 +49,7 @@
 		324CC3121C9A45C0009A2230 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		324CC3141C9A45C7009A2230 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		324CC3161C9A45CF009A2230 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3291F0B71C9DF7FB00E7F281 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -130,15 +132,16 @@
 		FE8A0EA91C7F78DF006B4C5C /* RoomEase */ = {
 			isa = PBXGroup;
 			children = (
-				329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */,
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
-				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
-				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
+				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
+				329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */,
 				FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */,
-				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
+				FE8A0ECE1C7F7E4E006B4C5C /* UserViewController.swift */,
+				3291F0B71C9DF7FB00E7F281 /* WelcomeController.swift */,
 				FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */,
 				FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */,
+				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
 				FE8A0EAA1C7F78DF006B4C5C /* Supporting Files */,
 			);
 			path = RoomEase;
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
+				3291F0B81C9DF7FB00E7F281 /* WelcomeController.swift in Sources */,
 				FE8A0ECF1C7F7E4E006B4C5C /* UserViewController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
 				329B19F71C8FC7D60027AEA7 /* LoginViewController.swift in Sources */,

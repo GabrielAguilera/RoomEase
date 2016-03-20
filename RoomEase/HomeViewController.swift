@@ -55,12 +55,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            print("Logged in")
 //        }
         
-        let loginButton = FBSDKLoginButton()
-        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        loginButton.center = self.view.center
+//        let loginButton = FBSDKLoginButton()
+//        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+//        loginButton.center = self.view.center
         
-        loginButton.delegate = self
-        self.view.addSubview(loginButton)
+//        loginButton.delegate = self
+//        self.view.addSubview(loginButton)
         
         self.taskTableView.delegate = self
     }
