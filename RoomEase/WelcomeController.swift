@@ -18,17 +18,11 @@ class WelcomeViewController : UIViewController {
     
     @IBOutlet weak var loginStatusLabel: UILabel!
     
-    override func viewDidLoad() {
-        
-    }
+    override func viewDidLoad() {}
     
-    override func viewDidAppear(animated: Bool) {
-        
-    }
+    override func viewDidAppear(animated: Bool) {}
     
-    override func didReceiveMemoryWarning() {
-        
-    }
+    override func didReceiveMemoryWarning() {}
     
     @IBAction func loginPressed(sender: AnyObject) {
         print("Login button pressed.")
