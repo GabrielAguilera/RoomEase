@@ -201,12 +201,6 @@
                                     <action selector="loginPressed:" destination="va8-hq-vN5" eventType="touchUpInside" id="Scg-rO-oAp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-J5-SNf">
-                                <rect key="frame" x="163" y="476" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.1333333333" green="1" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -214,7 +208,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="loginButton" destination="W78-5d-7du" id="YO2-Ah-pOS"/>
-                        <outlet property="loginStatusLabel" destination="Mb1-J5-SNf" id="ndN-4W-uuo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umN-xI-o9V" userLabel="First Responder" sceneMemberID="firstResponder"/>

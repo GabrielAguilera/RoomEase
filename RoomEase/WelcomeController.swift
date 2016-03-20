@@ -14,9 +14,7 @@ import UIKit
 class WelcomeViewController : UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
-    
-    @IBOutlet weak var loginStatusLabel: UILabel!
-    
+        
     override func viewDidLoad() {}
     
     override func viewDidAppear(animated: Bool) {}
