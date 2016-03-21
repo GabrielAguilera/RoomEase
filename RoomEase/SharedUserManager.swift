@@ -30,6 +30,8 @@ class ShareData {
     
     var roommateRankingsChanged = false
     var bestRoommate = false
+    var currentUser = "Lindsay Smith"
     
-    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
+    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
+    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")    
 }

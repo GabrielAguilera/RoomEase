@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FBSDKLoginButtonDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
@@ -20,48 +20,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let shareData = ShareData.sharedInstance
     let facebookLogin = FBSDKLoginManager()
 
-    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Login prompt
-        facebookLogin.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil, handler: {
-            (facebookResult, facebookError) -> Void in
-            
-            if facebookError != nil {
-                
-            } else if facebookResult.isCancelled {
-                
-            } else {
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                
-                self.shareData.rootRef.authWithOAuthProvider("facebook", token: accessToken,
-                    withCompletionBlock: { error, authData in
-                        
-                        if error != nil {
-                            print("Login failed. \(error)")
-                            
-                        } else {
-                            print("Logged in! \(authData)")
-                        }
-                })
-            }
-        })
-        
-//        if (FBSDKAccessToken.currentAccessToken() == nil) {
-//            print("Not logged in")
-//        } else {
-//            print("Logged in")
-//        }
-        
-        let loginButton = FBSDKLoginButton()
-        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        loginButton.center = self.view.center
-        
-        loginButton.delegate = self
-        self.view.addSubview(loginButton)
-        
         self.taskTableView.delegate = self
     }
     
@@ -81,21 +41,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if error == nil {
-            print("login complete")
-//            self.performSegueWithIdentifier("shownew", sender: self)
-        } else {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("User logged out")
-    }
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
@@ -106,7 +51,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             returnValue = self.shareData.roommateRankings.count
             break
         case 1:
-            returnValue = taskList.count
+            returnValue = self.shareData.taskList.count
             break
             
         default:
@@ -145,7 +90,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             break
         case 1:
-            let pointValue = String(taskList[sortedTasks[indexPath.row]]!)
+            let pointValue = String(self.shareData.taskList[sortedTasks[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
@@ -177,8 +122,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let sortedTasks = retrieveTaskRankings()
         let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
             print("Add Task button tapped")
-            self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
-            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+            self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.shareData.taskList[sortedTasks[indexPath.row]]
+            self.shareData.taskList.removeValueForKey(sortedTasks[indexPath.row])
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
         task.backgroundColor = UIColor.lightGrayColor()
@@ -203,7 +148,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func retrieveTaskRankings() -> Array<String> {
-        let sortedArray = taskList.sort({$0.1 > $1.1})
+        let sortedArray = self.shareData.taskList.sort({$0.1 > $1.1})
         let tasks: [String] = sortedArray.map {return $0.0 }
         return tasks
     }
@@ -220,6 +165,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             shareData.roommateRankingsChanged = false
     }
 
+    
+    // Mark Unwind Segues
+    @IBAction func cancelToHomeViewController(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
+        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
+            
+            //add the new player to the players array
+            if let task = taskViewDetailController.task {
+                self.shareData.taskList[task.name!] = task.pointVal
+                print("UPDATED TASK LIST")
+                
+                //update the tableView
+                let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
+                taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
+    }
+
+    
+    
+    
+    
 }
 
 
