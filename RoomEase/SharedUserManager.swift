@@ -6,7 +6,9 @@
 //  Copyright © 2016 RoomEase - EECS 441. All rights reserved.
 //
 
+import Firebase
 import Foundation
+
 class ShareData {
     class var sharedInstance: ShareData {
         struct Static {
@@ -34,4 +36,5 @@ class ShareData {
 
     
     
+    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
 }

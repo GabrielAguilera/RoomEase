@@ -5,20 +5,20 @@
 //  Created by Jessica Aboukasm on 2/25/16.
 //  Copyright (c) 2016 RoomEase - EECS 441. All rights reserved.
 //
-import UIKit
+import CoreData
 import FBSDKCoreKit
-
-
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var userSelectedTasks:[String:Int] = [:]
-
+    var dataController: DataController!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        dataController = DataController()
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -48,8 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
 
