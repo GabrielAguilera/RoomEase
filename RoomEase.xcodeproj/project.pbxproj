@@ -234,7 +234,7 @@
 				TargetAttributes = {
 					FE8A0EA61C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 553QC9CSAR;
+						DevelopmentTeam = 4J5RU7K988;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 0;

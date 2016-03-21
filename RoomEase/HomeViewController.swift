@@ -82,12 +82,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
-            if(self.shareData.bestRoommate) {
-                bestRoommateLabel.hidden = false
-            }
-            else {
-                bestRoommateLabel.hidden = true
-            }
             break
         case 1:
             let pointValue = String(self.shareData.taskList[sortedTasks[indexPath.row]]!)
@@ -163,6 +157,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 },
                 completion: nil);
             shareData.roommateRankingsChanged = false
+        if(self.homeSegmentedControl.selectedSegmentIndex == 0 && self.shareData.bestRoommate) {
+            bestRoommateLabel.hidden = false
+            self.shareData.bestRoommate = false
+        }
     }
 
     
@@ -173,14 +171,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
         if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
             
-            //add the new player to the players array
+            // error handling for duplicate tasks
             if let task = taskViewDetailController.task {
-                self.shareData.taskList[task.name!] = task.pointVal
-                print("UPDATED TASK LIST")
-                
-                //update the tableView
-                let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
+                if((self.shareData.taskList[task.name!]) != nil) {
+                    let alert = UIAlertView()
+                    alert.title = "Whoops!"
+                    alert.message = "We think this is already a task in the house."
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
+                }
+                else {
+                    self.shareData.taskList[task.name!] = task.pointVal
+                    //update the tableView
+                    let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
                 taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }
             }
         }
     }
