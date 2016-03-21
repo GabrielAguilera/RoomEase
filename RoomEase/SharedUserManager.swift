@@ -33,8 +33,5 @@ class ShareData {
     var currentUser = "Lindsay Smith"
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
-
-    
-    
-    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
+    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")    
 }
