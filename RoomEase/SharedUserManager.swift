@@ -10,6 +10,7 @@ import Firebase
 import Foundation
 
 class ShareData {
+    
     class var sharedInstance: ShareData {
         struct Static {
             static var instance: ShareData?
@@ -22,7 +23,7 @@ class ShareData {
         
         return Static.instance!
     }
-    
+    let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var userSelectedTasks:[String:Int] = [:]
     var roommateRankings:[String:Int] = [
         "Mitch Gildenberg":15,"Lindsay Smith":10, "Jessi Aboukasm":10, "Gabriel Aguilera":20
@@ -35,23 +36,39 @@ class ShareData {
     
 //    Usage example
 //    -------------
-//    ShareData().get_tasks({ (tasks:[NSDictionary]) in
-//      //Prints the last task in the task array
-//      print(tasks.last!)
-//      //x = string (username) of the last task in the array is assigned to (is an optional type)
-//      var x:String = String(tasks.last!["assignedTo"])
+//    ShareData().get_open_tasks("home1", callback: { (openTasks:[NSDictionary]) in
+//        print(openTasks)
 //    })
-    func get_tasks(homeID:String, callback:([NSDictionary]) -> Void) {
-        let ref = Firebase(url: "https://fiery-heat-3695.firebaseio.com/tasks")
-        // sync down from server
-        
-        ref.observeEventType(.Value, withBlock: { snapshot in
+    func get_open_tasks(homeID:String, callback:([NSDictionary]) -> Void) {
+        let ref = Firebase(url: self.ROOT_URL + "tasks")
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var tasks = [NSDictionary]()
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? FDataSnapshot {
                 let task = child.value as! NSDictionary
-                if (String(task["homeId"]) == homeID){
+                if (String(task["homeId"]!) == homeID && task["assignedTo"] == nil){
                     tasks.append(task)
+                }
+            }
+            callback(tasks)
+        })
+    }
+    
+//    Gives tasks as (unique_key, dictionary)
+//    Usage example
+//    -------------
+//    ShareData().get_user_tasks("mgild", callback: { (tasks:[String: NSDictionary]) in
+//        print(tasks)
+//    })
+    func get_user_tasks(username:String, callback:([String: NSDictionary]) -> Void) {
+        let ref = Firebase(url: self.ROOT_URL + "tasks")
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            var tasks = [String: NSDictionary]()
+            let enumerator = snapshot.children
+            while let child = enumerator.nextObject() as? FDataSnapshot {
+                let task = child.value as! NSDictionary
+                if (task["assignedTo"] != nil && String(task["assignedTo"]!) == username){
+                    tasks[child.key!] = task
                 }
             }
             callback(tasks)
@@ -65,21 +82,23 @@ class ShareData {
     //      //Prints the last task in the task array
     //      print(user!)
     //    })
+    //TODO: Username should likely be switched to FacebookID
     func get_user(username:String, callback:(NSDictionary) -> Void) {
-        let ref = Firebase(url: "https://fiery-heat-3695.firebaseio.com/users/" + username)
-        ref.observeEventType(.Value, withBlock: { snapshot in
+        let ref = Firebase(url: self.ROOT_URL + "users/" + username)
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             callback(snapshot.value as! NSDictionary)
         })
     }
     
     //example
     //---------
-    //ShareData().add_user_points("mgild", 5)
+    //ShareData().add_user_points("mgild", points_to_add: 5)
     func add_user_points(username:String, points_to_add:Int) {
-        let ref = Firebase(url: "https://fiery-heat-3695.firebaseio.com/users/" + username)
-        ref.observeEventType(.Value, withBlock: { snapshot in
+        let ref = Firebase(url: self.ROOT_URL + "users/" + username)
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let user = snapshot.value as! NSDictionary
-            let new_points: [String:Int] = ["points": Int(String(user["points"]))! + points_to_add]
+//           AnyObject to String to int conversion below (dont know how to do Anyobject to int)
+            let new_points: [String:Int] = ["points": Int(String(user["points"]!))! + points_to_add]
             ref.updateChildValues(new_points)
         })
     }
@@ -87,9 +106,14 @@ class ShareData {
     //for some reason could not get the firebase sort to work
     //sorting by value myself
     //currently uses callback that returns an array of tuples (User, score) pairs
+    //example call
+    //-----------
+//  ShareData().get_roomate_rankings("home1", callback: { (roomates:[(String,Int)]) in
+//      print(roomates)
+//  })
     func get_roomate_rankings(homeID:String, callback:([(String, Int)]) -> Void) {
-        let ref = Firebase(url: "https://fiery-heat-3695.firebaseio.com/users")
-        ref.observeEventType(.Value, withBlock: { snapshot in
+        let ref = Firebase(url: self.ROOT_URL + "users")
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var roomate_scores = [String:Int]()
             //This loop builds the array from the Firebase snap
             for item in snapshot.children {
@@ -120,18 +144,39 @@ class ShareData {
     }
     
     
+    //example usage:
+    //-------------
+    //ShareData().push_user("test_user", values: ["fid":"111111", "name": "Testy McTester", "photo_url": "https://img0.etsystatic.com/028/0/6829852/il_570xN.638618646_4qjl.jpg","homeId":"home2"])
+    func push_user(username:String, var values:[String:String]) {
+        let ref = Firebase(url: self.ROOT_URL + "users")
+        //TODO: throw error here
+        if (values["fid"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
+            assert(false)
+        }
+        values["points"] = "0"
+        ref.childByAppendingPath(username).setValue(values)
+    }
     
-    //    func get_user_tasks(user:String, callback:([NSDictionary]) -> Void) {
-    //        self.get_tasks({(var tasks:[NSDictionary]) in
-    //            for (i,_) in tasks.enumerate().reverse() {
-    //                if let owner:String = tasks[i]["assignedTo"] as? NSString {
-    //
-    //                }
-    //                if ( != user){
-    //                    tasks.removeAtIndex(i)
-    //                }
-    //            }
-    //        })
-    //    }
-    //
+    
+    //example usage:
+    //--------------
+    //ShareData().push_task(["homeId":"home1", "points": "5", "title": "test"])
+    func push_task(var values:[String:String]) {
+        let ref = Firebase(url: self.ROOT_URL + "tasks")
+        //TODO: throw error here
+        if (values["homeId"] == nil || values["points"] == nil || values["title"] == nil) {
+            assert(false)
+        }
+        //automatically creates a unique ID for the task
+        ref.childByAutoId().setValue(values)
+    }
+    
+
+    //example usage:
+    //--------------
+    //ShareData().assign_task("-KESJq2Rxv8AhbIjjDNE", user: "mgild")
+    func assign_task(task_key:String, user:String) {
+        let ref = Firebase(url: self.ROOT_URL + "tasks/" + task_key)
+        ref.updateChildValues(["assignedTo": user])
+    }
 }
