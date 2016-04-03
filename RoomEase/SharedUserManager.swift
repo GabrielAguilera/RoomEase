@@ -10,6 +10,7 @@ import Firebase
 import Foundation
 
 class ShareData {
+    
     class var sharedInstance: ShareData {
         struct Static {
             static var instance: ShareData?
@@ -22,7 +23,7 @@ class ShareData {
         
         return Static.instance!
     }
-    
+    let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var userSelectedTasks:[String:Int] = [:]
     var roommateRankings:[String:Int] = [
         "Mitch Gildenberg":15,"Lindsay Smith":10, "Jessi Aboukasm":10, "Gabriel Aguilera":20
