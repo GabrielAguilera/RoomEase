@@ -24,7 +24,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Login prompt
         facebookLogin.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: nil, handler: {
             (facebookResult, facebookError) -> Void in
