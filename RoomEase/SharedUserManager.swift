@@ -36,18 +36,18 @@ class ShareData {
     
 //    Usage example
 //    -------------
-//    ShareData().get_open_tasks("home1", callback: { (openTasks:[NSDictionary]) in
+//    ShareData().get_open_tasks("home1", callback: { (openTasks:[String:NSDictionary]) in
 //        print(openTasks)
 //    })
-    func get_open_tasks(homeID:String, callback:([NSDictionary]) -> Void) {
+    func get_open_tasks(homeID:String, callback:([String:NSDictionary]) -> Void) {
         let ref = Firebase(url: self.ROOT_URL + "tasks")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            var tasks = [NSDictionary]()
+            var tasks = [String:NSDictionary]()
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? FDataSnapshot {
                 let task = child.value as! NSDictionary
                 if (String(task["homeId"]!) == homeID && task["assignedTo"] == nil){
-                    tasks.append(task)
+                    tasks[child.key!] = task
                 }
             }
             callback(tasks)
