@@ -13,7 +13,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: Properties
     
     @IBOutlet weak var userProfileImage: UIImageView!
-   
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userPoints: UILabel!
     @IBOutlet weak var userTaskTable: UITableView!
@@ -23,6 +22,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
+        
+        userNameLabel.text = self.shareData.currentUser
+        if let data = NSData(contentsOfURL: NSURL(fileURLWithPath: "http://graph.facebook.com/\(self.shareData.currentUserId)/picture?type=large")) {
+            self.userProfileImage.image = UIImage(data: data)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

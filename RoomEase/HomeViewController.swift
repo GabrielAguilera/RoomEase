@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addTaskButton: UIButton!
     @IBOutlet weak var bestRoommateLabel: UILabel!
+    @IBOutlet weak var welcomeHomeLabel: UILabel!
     
     let shareData = ShareData.sharedInstance
     let facebookLogin = FBSDKLoginManager()
@@ -24,6 +25,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskTableView.delegate = self
+        
+        var username:String?
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil)
+            {
+                print("result \(result)")
+                let 😘 = result["name"]! as? String?
+                username = 😘!!
+                
+                let 👻 = result["id"]! as? String
+                self.shareData.currentUserId = 👻!
+                
+                
+                
+                print("returning the user name as: \(username!)")
+        
+                var nameArray = username!.componentsSeparatedByString(" ")
+                let firstName = nameArray[0]
+                
+                self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
+                self.shareData.currentUser = username!
+                
+            }
+            else
+            {
+                print("error \(error)")
+            }
+        })
+
+
+        
+        
+        
+        
+        
     }
     
     
@@ -45,7 +82,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         var returnValue = 0
-        print("inside table view")
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:

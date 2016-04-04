@@ -8,6 +8,8 @@
 
 import Firebase
 import Foundation
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ShareData {
     
@@ -23,6 +25,10 @@ class ShareData {
         
         return Static.instance!
     }
+    
+    
+    
+
     let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var userSelectedTasks:[String:Int] = [:]
     var roommateRankings:[String:Int] = [
@@ -31,10 +37,35 @@ class ShareData {
     
     var roommateRankingsChanged = false
     var bestRoommate = false
-    var currentUser = "Lindsay Smith"
+    var currentUser:String = ""
+    var currentUserId:String = ""
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
+    
+    
+    func getUserFacebookName() -> String? {
+        var username:String?
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil)
+            {
+                print("result \(result)")
+                let callMeMaybe = result["name"]! as? String?
+                username = callMeMaybe!!
+                print("returning the user name as: \(username!)")
+                
+            }
+            else
+            {
+                print("error \(error)")
+            }
+        })
+        return username
+    }
+    
+
+    
     
 //    Usage example
 //    -------------

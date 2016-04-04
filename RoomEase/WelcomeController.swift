@@ -15,7 +15,9 @@ import UIKit
 class WelcomeViewController : UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
-        
+    let shareData = ShareData.sharedInstance
+
+    
     override func viewDidLoad() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.dataController.managedObjectContext
@@ -74,6 +76,9 @@ class WelcomeViewController : UIViewController {
                             
                             do {
                                 try managedContext.save()
+                                
+                                
+                                
                             } catch { print("Couldn't save to core data.") }
                             
 //                            user.setValue(authData.token, forKey: "firebaseToken")

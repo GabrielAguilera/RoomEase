@@ -50,7 +50,7 @@ class TaskViewDetailController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SaveTaskDetail" {
-            task = Task(name: nameTextField.text, assigner:shareData.currentUser, assignee: "", points: 5)            
+            task = Task(name: nameTextField.text, assigner:"me", assignee: "", points: 5)            
         }
 //        if segue.identifier == "PickRoommate" {
 //            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
