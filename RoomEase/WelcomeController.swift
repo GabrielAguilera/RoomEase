@@ -14,12 +14,12 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     
     let shareData = ShareData.sharedInstance
     
+    /*
+     * Conformation for UIView Controller 
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: Remove when a logout button has been added to profile page
-        FBSDKLoginManager().logOut()
-        
         let fbBtn = FBSDKLoginButton()
         fbBtn.readPermissions = ["public_profile", "email", "user_friends"]
         fbBtn.center = self.view.center
@@ -31,22 +31,35 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     // status and segue
     override func viewDidAppear(animated: Bool) {
         if (FBSDKAccessToken.currentAccessToken() == nil) {
-            print("Not logged in")
-        } else {
-            print("Logged in")
+            print("No token found.")
+        } else{
+            print("Token found. Starting segue.")
             self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
         }
     }
     
     override func didReceiveMemoryWarning() {}
     
+    /*
+     * Conformation for FBSDKLoginDelegate Protocol 
+     */
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if error == nil {
+            print("Log in successful.")
+        } else {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){}
+    
+    /*
+     * Misc
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "LoggedInSegue" {
             print("Preparing for segue to home view.")
         }
     }
     
-    // Functions to conform to FBSDKLoginDelegate protocol
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {}
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){}
 }
