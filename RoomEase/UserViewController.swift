@@ -24,7 +24,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
          // Do any additional setup after loading the view, typically from a nib.
         
         userNameLabel.text = self.shareData.currentUser
-        if let data = NSData(contentsOfURL: NSURL(fileURLWithPath: "http://graph.facebook.com/\(self.shareData.currentUserId)/picture?type=large")) {
+        if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
             self.userProfileImage.image = UIImage(data: data)
         }
     }
