@@ -6,6 +6,25 @@
 //  Copyright © 2016 RoomEase - EECS 441. All rights reserved.
 //
 
+// Core Data Object
+// 
+// Example Usage:
+//      let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.dataController.managedObjectContext
+//        let fetchRequest = NSFetchRequest(entityName: "User")
+//        do {
+//            let user:NSArray =
+//            try managedContext.executeFetchRequest(fetchRequest)
+//
+//            if (user.count == 1) {
+//                print("Existing user found. Logging in with old credentials.")
+//                self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
+//            }
+//            print("No user data was saved to core data.")
+//        } catch let error as NSError {
+//            print("Could not fetch \(error), \(error.userInfo)")
+//        }
+
 import UIKit
 import CoreData
 class DataController: NSObject {
