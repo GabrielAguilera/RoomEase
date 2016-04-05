@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="va8-hq-vN5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="va8-hq-vN5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -36346,7 +36346,6 @@ AwAg7wsAIO8YACDvHQAg7x8AIO8hACDvJgAg7y4AIO8xACDvNgAg7z4AIO9BACDvUwAg71YAIO9bAAAA
 AAAABAEAAAAAAAAAPgAAAAAAAAAAAAAAAAAg710
 </mutableData>
         </image>
-        <image name="Chat" width="32" height="32"/>
         <image name="Home" width="32" height="32"/>
         <image name="User" width="32" height="32"/>
     </resources>
