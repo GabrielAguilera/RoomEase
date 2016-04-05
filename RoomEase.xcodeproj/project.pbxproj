@@ -13,11 +13,11 @@
 		324CC3131C9A45C0009A2230 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3121C9A45C0009A2230 /* CFNetwork.framework */; };
 		324CC3151C9A45C7009A2230 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3141C9A45C7009A2230 /* Security.framework */; };
 		324CC3171C9A45CF009A2230 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324CC3161C9A45CF009A2230 /* SystemConfiguration.framework */; };
+		328CD0CF1CB3A4A900F8A079 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CD0CE1CB3A4A900F8A079 /* CustomTabBarController.swift */; };
 		3291F0B81C9DF7FB00E7F281 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0B71C9DF7FB00E7F281 /* WelcomeController.swift */; };
 		3291F0C71C9F429C00E7F281 /* RoomEaseData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0C51C9F429C00E7F281 /* RoomEaseData.xcdatamodeld */; };
 		3291F0C91C9F52F200E7F281 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0C81C9F52F200E7F281 /* DataController.swift */; };
 		3291F0CB1C9FA79E00E7F281 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0CA1C9FA79E00E7F281 /* UserViewController.swift */; };
-		329B19F71C8FC7D60027AEA7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */; };
 		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
 		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
 		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; };
@@ -53,11 +53,11 @@
 		324CC3121C9A45C0009A2230 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		324CC3141C9A45C7009A2230 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		324CC3161C9A45CF009A2230 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		328CD0CE1CB3A4A900F8A079 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		3291F0B71C9DF7FB00E7F281 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		3291F0C61C9F429C00E7F281 /* RoomEaseData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoomEaseData.xcdatamodel; sourceTree = "<group>"; };
 		3291F0C81C9F52F200E7F281 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		3291F0CA1C9FA79E00E7F281 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
@@ -142,9 +142,9 @@
 			children = (
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
+				328CD0CE1CB3A4A900F8A079 /* CustomTabBarController.swift */,
 				3291F0C81C9F52F200E7F281 /* DataController.swift */,
 				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
-				329B19F61C8FC7D60027AEA7 /* LoginViewController.swift */,
 				FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */,
 				FEDBD8FC1C9DFD50003D7316 /* Task.swift */,
 				FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */,
@@ -234,7 +234,7 @@
 				TargetAttributes = {
 					FE8A0EA61C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4J5RU7K988;
+						DevelopmentTeam = 8D3LLFACDB;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 0;
@@ -296,12 +296,12 @@
 			files = (
 				FEDBD8FD1C9DFD50003D7316 /* Task.swift in Sources */,
 				3291F0CB1C9FA79E00E7F281 /* UserViewController.swift in Sources */,
+				328CD0CF1CB3A4A900F8A079 /* CustomTabBarController.swift in Sources */,
 				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
 				3291F0B81C9DF7FB00E7F281 /* WelcomeController.swift in Sources */,
 				FEDBD8FB1C9DED94003D7316 /* TaskViewDetailController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
 				3291F0C91C9F52F200E7F281 /* DataController.swift in Sources */,
-				329B19F71C8FC7D60027AEA7 /* LoginViewController.swift in Sources */,
 				FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */,
 				3291F0C71C9F429C00E7F281 /* RoomEaseData.xcdatamodeld in Sources */,
 				FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */,

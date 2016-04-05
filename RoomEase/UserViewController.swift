@@ -6,9 +6,10 @@
 //  Copyright (c) 2016 RoomEase - EECS 441. All rights reserved.
 //
 
+import FBSDKLoginKit
 import UIKit
 
-class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBSDKLoginButtonDelegate  {
     
     // MARK: Properties
     
@@ -17,16 +18,21 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userPoints: UILabel!
     @IBOutlet weak var userTaskTable: UITableView!
     
+    @IBOutlet weak var fbButton: FBSDKLoginButton!
+    
     let shareData = ShareData.sharedInstance
 
+    /* Conformation for UIViewController Protocol */
     
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
         userNameLabel.text = self.shareData.currentUser
-        if let data = NSData(contentsOfURL: NSURL(fileURLWithPath: "http://graph.facebook.com/\(self.shareData.currentUserId)/picture?type=large")) {
+        if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
             self.userProfileImage.image = UIImage(data: data)
         }
+        
+        fbButton.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -37,6 +43,19 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /* Conformation for FBSDKLoginDelegate Protocol */
+    
+    // Shouldn't be called because the user should only be here if they logged in
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {}
+    
+    // Called after logout button pressed
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){
+        print("Logout complete. Should begin segue.")
+        self.performSegueWithIdentifier("LoggedOutSegue", sender: nil)
+    }
+    
+    /* Conformation for UITableViewDelebate Protocol */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.shareData.userSelectedTasks.count

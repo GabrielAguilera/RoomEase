@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.taskTableView.delegate = self
         
         var username:String?
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,picture.type(large).redirect(false)"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
         req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
             if(error == nil)
             {
@@ -38,7 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let 👻 = result["id"]! as? String
                 self.shareData.currentUserId = 👻!
                 
-                
+                let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
+                self.shareData.currentUserPhotoUrl = userPhotoUrl!
                 
                 print("returning the user name as: \(username!)")
         

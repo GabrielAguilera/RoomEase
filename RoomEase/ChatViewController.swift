@@ -18,16 +18,8 @@ class ChatViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /** Firebase test stuff **/
-        // Create a reference to a Firebase location
-//        var myRootRef = Firebase(url: "")
-        // Write data to Firebase
-//        myRootRef.setValue("Do you have data? You'll love Firebase. Maybe.")
-//        myRootRef.observeEventType(.Value, withBlock: {
-//            snapshot in
-//            print("\(snapshot.key) -> \(snapshot.value)")
-//        })
-
+        self.view.backgroundColor = UIColor.darkGrayColor()
+        
         // Facebook Messenger button
         let messageButton : UIButton = FBSDKMessengerShareButton.circularButtonWithStyle(FBSDKMessengerShareButtonStyle.Blue, width: 50)
         messageButton.addTarget(self, action: "openMessenger", forControlEvents: UIControlEvents.TouchUpInside)
@@ -38,7 +30,7 @@ class ChatViewController: UIViewController  {
     func openMessenger() {
         // FYI, the url can break at anytime if fb feels like changing it
         // fb-messenger://groupthreadfbid/%s could work in the future???
-        UIApplication.sharedApplication().openURL(NSURL(string: "fb-messenger://")!)
+//        UIApplication.sharedApplication().openURL(NSURL(string: "fb-messenger://")!)
     }
     
     override func didReceiveMemoryWarning() {

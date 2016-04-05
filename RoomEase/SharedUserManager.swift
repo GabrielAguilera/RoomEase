@@ -39,6 +39,7 @@ class ShareData {
     var bestRoommate = false
     var currentUser:String = ""
     var currentUserId:String = ""
+    var currentUserPhotoUrl:String = ""
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
