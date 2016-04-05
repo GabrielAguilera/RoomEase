@@ -19,21 +19,24 @@ class WelcomeViewController : UIViewController {
 
     
     override func viewDidLoad() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.dataController.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "User")
-        do {
-            let user:NSArray =
-            try managedContext.executeFetchRequest(fetchRequest)
-            
-            if (user.count == 1) {
-                print("Existing user found. Logging in with old credentials.")
-                self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
-            }
-            print("No user data was saved to core data.")
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
+     //   let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+       // let managedContext = appDelegate.dataController.managedObjectContext
+       // let fetchRequest = NSFetchRequest(entityName: "User")
+//
+//        do {
+//            let results = try managedContext.executeFetchRequest(fetchRequest) as! [String]
+//            if (results.count > 0) {
+//                for result in results {
+//                    print(result)
+//                }
+//            } else {
+//                print("No Users")
+//            }
+//        } catch let error as NSError {
+//            // failure
+//            print("Fetch failed: \(error.localizedDescription)")
+//        }
+
     }
     
     override func viewDidAppear(animated: Bool) {}
