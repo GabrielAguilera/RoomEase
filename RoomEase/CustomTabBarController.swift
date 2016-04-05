@@ -18,7 +18,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(animated: Bool) {
         let fbInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string: "fb-messenger://")!)
         
-        if fbInstalled {
+        if fbInstalled && self.viewControllers?.count == 2 {
             let messengerView = ChatViewController()
             let messengerItem = UITabBarItem(title: "Messenger", image: UIImage(named: "Messenger"), selectedImage: UIImage(named: "Messenger"))
             messengerView.tabBarItem = messengerItem
