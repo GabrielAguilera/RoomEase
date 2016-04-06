@@ -29,6 +29,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         userNameLabel.text = self.shareData.currentUser
         if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
+            self.userProfileImage.layer.borderWidth = 1
+            self.userProfileImage.layer.masksToBounds = false
+            self.userProfileImage.layer.borderColor = UIColor.blackColor().CGColor
+            self.userProfileImage.layer.cornerRadius = self.userProfileImage.frame.height/2
+            self.userProfileImage.clipsToBounds = true
             self.userProfileImage.image = UIImage(data: data)
         }
         
@@ -125,4 +130,8 @@ extension Dictionary {
         return mutableCopy
     }
 }
+
+
+
+
 
