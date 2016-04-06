@@ -117,10 +117,15 @@ class ShareData {
     //      print(user!)
     //    })
     //TODO: Username should likely be switched to FacebookID
-    func get_user(username:String, callback:(NSDictionary) -> Void) {
-        let ref = Firebase(url: self.ROOT_URL + "users/" + username)
+    func get_user(fbid:String, callback:(NSDictionary) -> Void) {
+        let ref = Firebase(url: self.ROOT_URL + "users/" + fbid)
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            callback(snapshot.value as! NSDictionary)
+            if (!snapshot.exists()) {
+                //gives empty dictionary if user does not exist
+                callback(NSDictionary())
+            } else {
+                callback(snapshot.value as! NSDictionary)
+            }
         })
     }
     
@@ -184,7 +189,7 @@ class ShareData {
     func push_user(username:String, var values:[String:String]) {
         let ref = Firebase(url: self.ROOT_URL + "users")
         //TODO: throw error here
-        if (values["fid"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
+        if (values["username"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
             assert(false)
         }
         values["points"] = "0"
