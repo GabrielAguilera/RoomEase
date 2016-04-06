@@ -29,12 +29,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         userNameLabel.text = self.shareData.currentUser
         if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
-            self.userProfileImage.layer.borderWidth = 1
-            self.userProfileImage.layer.masksToBounds = false
-            self.userProfileImage.layer.borderColor = UIColor.blackColor().CGColor
-            self.userProfileImage.layer.cornerRadius = self.userProfileImage.frame.height/2
-            self.userProfileImage.clipsToBounds = true
-            self.userProfileImage.image = UIImage(data: data)
+            self.userProfileImage.image = UIImage(data: data)!.circle
         }
         
         fbButton.delegate = self
@@ -128,6 +123,50 @@ extension Dictionary {
             mutableCopy[key] = value
         }
         return mutableCopy
+    }
+}
+
+func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
+    let imageView: UIImageView = UIImageView(image: image)
+    var layer: CALayer = CALayer()
+    layer = imageView.layer
+    
+    layer.masksToBounds = true
+    layer.cornerRadius = CGFloat(radius)
+    
+    UIGraphicsBeginImageContext(imageView.bounds.size)
+    layer.renderInContext(UIGraphicsGetCurrentContext()!)
+    let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return roundedImage
+}
+
+extension UIImage {
+    var rounded: UIImage? {
+        let imageView = UIImageView(image: self)
+        imageView.layer.cornerRadius = min(size.height/2, size.width/2)
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.renderInContext(context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+    var circle: UIImage? {
+        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
+        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: square))
+        imageView.contentMode = .ScaleAspectFill
+        imageView.image = self
+        imageView.layer.cornerRadius = square.width/2
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.renderInContext(context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
     }
 }
 
