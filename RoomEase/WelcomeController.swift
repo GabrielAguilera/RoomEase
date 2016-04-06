@@ -34,7 +34,10 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
             print("No token found.")
         } else{
             print("Token found. Starting segue.")
-            self.performSegueWithIdentifier("LoggedInSegue", sender: nil)
+            // TODO:
+            // We should check that their login that has given us their id
+            // and see if they are already a user of this service.
+            self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
         }
     }
     
@@ -57,9 +60,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
      * Misc
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "LoggedInSegue" {
-            print("Preparing for segue to home view.")
-        }
+        
     }
     
 }

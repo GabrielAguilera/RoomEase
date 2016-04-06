@@ -22,7 +22,7 @@ class ChatViewController: UIViewController  {
         
         // Facebook Messenger button
         let messageButton : UIButton = FBSDKMessengerShareButton.circularButtonWithStyle(FBSDKMessengerShareButtonStyle.Blue, width: 50)
-        messageButton.addTarget(self, action: "openMessenger", forControlEvents: UIControlEvents.TouchUpInside)
+        messageButton.addTarget(self, action: #selector(ChatViewController.openMessenger), forControlEvents: UIControlEvents.TouchUpInside)
         messageButton.frame = CGRect(x: self.view.frame.size.width/2 - 40, y: self.view.frame.size.height/2 - 40, width: 80, height: 80)
         self.view.addSubview(messageButton)
     }
