@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="va8-hq-vN5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -236,7 +236,7 @@
                                 <color key="textColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="6B30CBCD-EA1B-4529-829D-6C78396C7478" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="6D4ED04F-C19E-4BE0-8F85-862B54BADD9E" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
                                 <rect key="frame" x="74.5" y="72" width="240" height="160"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewe-mn-ApM">
@@ -513,10 +513,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6B30CBCD-EA1B-4529-829D-6C78396C7478" width="723" height="745">
+        <image name="6D4ED04F-C19E-4BE0-8F85-862B54BADD9E" width="723" height="745">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
+GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
 DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
 RkZSZXByZXNlbnRhdGlvboAGgAdPEgAg7cJNTQAqACDgNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -36486,14 +36486,14 @@ yjjKt8s2y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo
 2WzZ8dp22vvbgNwF3IrdEN2W3hzeot8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui8
 6Ubp0Opb6uXrcOv77IbtEe2c7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4
 +cf6V/rn+3f8B/yY/Sn9uv5L/tz/bf//0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0bWFw
-SW1hZ2VSZXCjJCYnWk5TSW1hZ2VSZXBYTlNPYmplY3TSIiMpKldOU0FycmF5oikn0iIjLC1eTlNNdXRh
-YmxlQXJyYXmjLCkn0y8wCTEyM1dOU1doaXRlXE5TQ29sb3JTcGFjZUQwIDAAEAOAC9IiIzU2V05TQ29s
-b3KiNSfSIiM4OVdOU0ltYWdlojgnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VHJvb3SAAQAAAAgAAAARAAAA
-GgAAACMAAAAtAAAAMgAAADcAAABFAAAASwAAAFQAAABbAAAAaAAAAG8AAAB3AAAAeQAAAH4AAACAAAAA
-ggAAAIcAAACSAAAAlAAAAJYAAACYAAAAnQAAAKAAAACiAAAApAAAAKYAAACoAAAArQAAAMQAAADGAAAA
-yAAg7pAAIO6VACDuoAAg7qkAIO68ACDuwAAg7ssAIO7UACDu2QAg7uEAIO7kACDu6QAg7vgAIO78ACDv
-AwAg7wsAIO8YACDvHQAg7x8AIO8hACDvJgAg7y4AIO8xACDvNgAg7z4AIO9BACDvUwAg71YAIO9bAAAA
-AAAABAEAAAAAAAAAPgAAAAAAAAAAAAAAAAAg710
+SW1hZ2VSZXCjJicoXxAQTlNCaXRtYXBJbWFnZVJlcFpOU0ltYWdlUmVwWE5TT2JqZWN00iIjKitXTlNB
+cnJheaIqKNIiIy0uXk5TTXV0YWJsZUFycmF5oy0qKNMwMQkyMzRXTlNXaGl0ZVxOU0NvbG9yU3BhY2VE
+MCAwABADgAvSIiM2N1dOU0NvbG9yojYo0iIjOTpXTlNJbWFnZaI5KF8QD05TS2V5ZWRBcmNoaXZlctE9
+PlRyb290gAEAAAAIAAAAEQAAABoAAAAjAAAALQAAADIAAAA3AAAARQAAAEsAAABUAAAAWwAAAGgAAABv
+AAAAdwAAAHkAAAB+AAAAgAAAAIIAAACHAAAAkgAAAJQAAACWAAAAmAAAAJ0AAACgAAAAogAAAKQAAACm
+AAAAqAAAAK0AAADEAAAAxgAAAMgAIO6QACDulQAg7qAAIO6pACDuvAAg7sAAIO7TACDu3gAg7ucAIO7s
+ACDu9AAg7vcAIO78ACDvCwAg7w8AIO8WACDvHgAg7ysAIO8wACDvMgAg7zQAIO85ACDvQQAg70QAIO9J
+ACDvUQAg71QAIO9mACDvaQAg724AAAAAAAAEAQAAAAAAAAA/AAAAAAAAAAAAAAAAACDvcA
 </mutableData>
         </image>
         <image name="Home" width="32" height="32"/>
