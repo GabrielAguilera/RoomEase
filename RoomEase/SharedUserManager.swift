@@ -31,9 +31,7 @@ class ShareData {
 
     let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var userSelectedTasks:[String:Int] = [:]
-    var roommateRankings:[String:Int] = [
-        "Mitch Gildenberg":15,"Lindsay Smith":10, "Jessi Aboukasm":10, "Gabriel Aguilera":20
-    ]
+    var roommateRankings: [String:Int] = [:]
     
     var roommateRankingsChanged = false
     var bestRoommate = false
@@ -218,4 +216,5 @@ class ShareData {
         let ref = Firebase(url: self.ROOT_URL + "tasks/" + task_key)
         ref.updateChildValues(["assignedTo": user])
     }
+    
 }
