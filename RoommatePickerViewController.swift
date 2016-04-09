@@ -12,7 +12,7 @@ import UIKit
 
 let shareData = ShareData.sharedInstance
 
-
+var selectedRoommate:String = ""
 
 class RoommatePickerViewController: UITableViewController {
 
