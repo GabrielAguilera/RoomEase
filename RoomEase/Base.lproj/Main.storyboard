@@ -153,6 +153,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7dJ-Kr-GLn" kind="showDetail" id="9wl-98-hHk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -212,6 +215,43 @@
             </objects>
             <point key="canvasLocation" x="608" y="2478"/>
         </scene>
+        <!--Choose Roomate-->
+        <scene sceneID="EVN-wk-Alc">
+            <objects>
+                <tableViewController title="Choose Roomate" id="7dJ-Kr-GLn" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Hf-5f-Vqf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoommateCell" textLabel="W7X-fK-Ozb" style="IBUITableViewCellStyleDefault" id="RYa-8w-W8Y">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RYa-8w-W8Y" id="oc9-Au-5Pt">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W7X-fK-Ozb">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7dJ-Kr-GLn" id="Gnu-tv-spB"/>
+                            <outlet property="delegate" destination="7dJ-Kr-GLn" id="fQm-7D-AsI"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5p-KQ-Mkx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1255" y="2466"/>
+        </scene>
         <!--User-->
         <scene sceneID="paB-9w-hoK">
             <objects>
@@ -236,7 +276,7 @@
                                 <color key="textColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="6D4ED04F-C19E-4BE0-8F85-862B54BADD9E" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="FE786A2D-6AC1-44BA-A93D-69D98119253E" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
                                 <rect key="frame" x="74.5" y="72" width="240" height="160"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewe-mn-ApM">
@@ -513,7 +553,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6D4ED04F-C19E-4BE0-8F85-862B54BADD9E" width="723" height="745">
+        <image name="FE786A2D-6AC1-44BA-A93D-69D98119253E" width="723" height="745">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

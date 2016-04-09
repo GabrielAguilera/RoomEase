@@ -21,7 +21,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     let shareData = ShareData.sharedInstance
     let facebookLogin = FBSDKLoginManager()
-    var roomateRankings: [(String, Int)] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +54,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.shareData.currentUser = username!
                 
                 self.shareData.get_roomate_rankings(homeId, callback: {(pulled_rankings) in
-                    self.roomateRankings = pulled_rankings
+                    for tuple in pulled_rankings {
+                        self.shareData.roommateRankings[tuple.0] = tuple.1
+                    }
                     self.taskTableView.reloadData()
                 })
                 
@@ -122,14 +123,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         
-        if (indexPath.row >= self.roomateRankings.count) {
+        if (indexPath.row >= self.shareData.roommateRankings.count) {
             return myCell
         }
-        
-//        var sortedNames = retrieveRoommateRankings()
-//        let sortedTasks = retrieveTaskRankings()
-        let pointValue = self.roomateRankings[indexPath.row].1
-        let cellText = String(pointValue) + "  |   " + self.roomateRankings[indexPath.row].0
+        let sortedNames = retrieveRoommateRankings()
+        let sortedTasks = retrieveTaskRankings()
+        let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
+        let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
@@ -146,6 +146,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             break
         case 1:
+            let pointValue = String(self.shareData.taskList[sortedTasks[indexPath.row]]!)
+            let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
             bestRoommateLabel.hidden = true
