@@ -86,6 +86,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
             print("Snapshot value: \(snapshot)")
             if snapshot.value is NSNull {
                 print("This is a new user to the application.")
+                self.createUser()
                 // Push the new user object with inHome(false) and then segue
                 self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
             } else {
@@ -97,8 +98,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
                 
                 if inHome {
                     print("This user is in already in a home.")
-                    self.shareData.currentHomeId = "home1"
-//                    self.shareData.currentHomeId = snapshot.value.objectForKey("homeId") as! String
+                    self.shareData.currentHomeId = snapshot.value.objectForKey("homeId") as! String
                     self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
                 } else {
                     print("This user is not in a home yet.")
@@ -106,6 +106,13 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
                 }
             }
         })
+    }
+    
+    func createUser()
+    {
+        let data = ["name": self.shareData.currentName, "inHome": false, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
+        let ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId)
+        ref.setValue(data)
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){}
