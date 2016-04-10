@@ -93,10 +93,11 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
                 print("This user has been in the application before.")
 
                 // Check if they're in a home already on firebase
-                let inHome = snapshot.value.objectForKey("inHome") as! Bool
-                print("inHome: \(inHome)")
+                //let inHome = snapshot.value.objectForKey("homeId") as! Bool
+                //print("inHome: \(inHome)")
                 
-                if inHome {
+                
+                if(ref.childByAppendingPath("homeId") != nil) {
                     print("This user is in already in a home.")
                     self.shareData.currentHomeId = snapshot.value.objectForKey("homeId") as! String
                     self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
