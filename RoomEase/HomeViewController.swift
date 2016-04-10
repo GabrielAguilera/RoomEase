@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskTableView.delegate = self
-        
         var username:String?
         let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,picture.type(large).redirect(false)"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
         req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
@@ -67,14 +66,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 print("error \(error)")
             }
+            self.taskTableView.reloadData()
         })
-
-
-        
-        
-        
-        
-        
     }
     
     
@@ -253,11 +246,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-
-    
-    
-    
-    
 }
 
 

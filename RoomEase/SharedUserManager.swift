@@ -25,9 +25,6 @@ class ShareData {
         
         return Static.instance!
     }
-    
-    
-    
 
     let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var userSelectedTasks:[String:Int] = [:]
@@ -38,33 +35,10 @@ class ShareData {
     var currentUser:String = ""
     var currentUserId:String = ""
     var currentUserPhotoUrl:String = ""
+    var currentHomeId:String = ""
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
-    
-    
-    func getUserFacebookName() -> String? {
-        var username:String?
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
-        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-            if(error == nil)
-            {
-                print("result \(result)")
-                let callMeMaybe = result["name"]! as? String?
-                username = callMeMaybe!!
-                print("returning the user name as: \(username!)")
-                
-            }
-            else
-            {
-                print("error \(error)")
-            }
-        })
-        return username
-    }
-    
-
-    
     
 //    Usage example
 //    -------------
@@ -162,8 +136,6 @@ class ShareData {
                     let user_points = Int(String(user.childSnapshotForPath("points").value))
                     let userName = String(user.childSnapshotForPath("name").value)                    
                     self.roommateRankings[userName] = user_points
-                    
-                    
                 }
             }
             //function for sorting by value
@@ -186,7 +158,7 @@ class ShareData {
     //-------------
     //ShareData().push_user("test_user", values: ["fid":"111111", "name": "Testy McTester", "photo_url": "https://img0.etsystatic.com/028/0/6829852/il_570xN.638618646_4qjl.jpg","homeId":"home2"])
     func push_user(username:String, var values:[String:String]) {
-        let ref = Firebase(url: self.ROOT_URL + "users")
+        let ref = Firebase(url: self.ROOT_URL + "users/")
         //TODO: throw error here
         if (values["username"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
             assert(false)
@@ -229,5 +201,4 @@ class ShareData {
         let ref = Firebase(url: self.ROOT_URL + "tasks/" + task_key)
         ref.updateChildValues(["assignedTo": user])
     }
-    
 }

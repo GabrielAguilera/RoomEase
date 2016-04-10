@@ -27,11 +27,7 @@ class ChatViewController: UIViewController  {
         self.view.addSubview(messageButton)
     }
 
-    func openMessenger() {
-        // FYI, the url can break at anytime if fb feels like changing it
-        // fb-messenger://groupthreadfbid/%s could work in the future???
-//        UIApplication.sharedApplication().openURL(NSURL(string: "fb-messenger://")!)
-    }
+    func openMessenger() {}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

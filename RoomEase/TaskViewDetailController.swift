@@ -76,6 +76,7 @@ class TaskViewDetailController: UITableViewController {
                 alert.show()
                 return false
             }
+
             task = Task(name: nameTextField.text, assigner:self.shareData.currentUser, assignee: self.assignee, points: Int(pointTextField.text!)!)
             return true
         }
