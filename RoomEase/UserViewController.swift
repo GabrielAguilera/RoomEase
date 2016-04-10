@@ -27,7 +27,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
-        userNameLabel.text = self.shareData.currentUser
+        userNameLabel.text = self.shareData.currentName
         if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
             self.userProfileImage.image = UIImage(data: data)!.circle
         }

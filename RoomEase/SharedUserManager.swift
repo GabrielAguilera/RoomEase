@@ -35,9 +35,10 @@ class ShareData {
     
     var roommateRankingsChanged = false
     var bestRoommate = false
-    var currentUser:String = ""
+    var currentName:String = ""
     var currentUserId:String = ""
     var currentUserPhotoUrl:String = ""
+    var currentHomeId:String = ""
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
@@ -159,7 +160,8 @@ class ShareData {
                 let user_home = String(user.childSnapshotForPath("homeId").value)
                 if (homeID == user_home) {
                     //get the username from the tuple
-                    let user_name = user.key
+                    let user_name = String(user.childSnapshotForPath("name").value)
+
                     //get the users points from the child value
                     let user_points = Int(String(user.childSnapshotForPath("points").value))
                     roomate_scores[user_name] = user_points
@@ -185,7 +187,7 @@ class ShareData {
     //-------------
     //ShareData().push_user("test_user", values: ["fid":"111111", "name": "Testy McTester", "photo_url": "https://img0.etsystatic.com/028/0/6829852/il_570xN.638618646_4qjl.jpg","homeId":"home2"])
     func push_user(username:String, var values:[String:String]) {
-        let ref = Firebase(url: self.ROOT_URL + "users")
+        let ref = Firebase(url: self.ROOT_URL + "users/")
         //TODO: throw error here
         if (values["username"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
             assert(false)

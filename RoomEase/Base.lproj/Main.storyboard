@@ -171,7 +171,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EZI-co-W4F">
                                                     <rect key="frame" x="15" y="8" width="544" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -276,7 +276,7 @@
                                 <color key="textColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4F86DA15-FD1C-4659-BD61-295C50B8B087" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BF588606-9F56-4EBC-A973-C0D6E9700FDE" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
                                 <rect key="frame" x="74.5" y="72" width="240" height="160"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewe-mn-ApM">
@@ -501,14 +501,6 @@
                                     <rect key="frame" x="82" y="64" width="237" height="39"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-V7-EWI">
-                                <rect key="frame" x="243" y="225" width="114" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="109" y="151" width="182" height="30"/>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1Z-VQ-FKC">
                                 <rect key="frame" x="249" y="263" width="102" height="45"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
@@ -517,16 +509,28 @@
                                     <rect key="frame" x="149" y="189" width="102" height="45"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="N3c-eU-n43"/>
+                                    <action selector="createButtonPressed:" destination="Ubj-GY-jOo" eventType="touchUpInside" id="ouL-2t-Kfv"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home Name" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-V7-EWI">
+                                <rect key="frame" x="209" y="225" width="182" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="109" y="151" width="182" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="homeNameTextBox" destination="ik6-V7-EWI" id="qOe-Up-r0v"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="HomeCreatedSegue" id="rIB-R5-y5b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EvI-CA-kJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-874.5" y="-494.25"/>
+            <point key="canvasLocation" x="-875" y="-495"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gwr-mt-gmk">
@@ -548,7 +552,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="4F86DA15-FD1C-4659-BD61-295C50B8B087" width="723" height="745">
+        <image name="BF588606-9F56-4EBC-A973-C0D6E9700FDE" width="723" height="745">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -36535,7 +36539,7 @@ AAAABAEAAAAAAAAAPgAAAAAAAAAAAAAAAAAg710
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N3c-eU-n43"/>
+        <segue reference="rIB-R5-y5b"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
 </document>

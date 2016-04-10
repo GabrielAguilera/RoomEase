@@ -77,7 +77,7 @@ class TaskViewDetailController: UITableViewController {
             else if(identifier == "PickRoommate") {
                 performSegueWithIdentifier("PickRoommate", sender: self)
             }
-            task = Task(name: nameTextField.text, assigner:self.shareData.currentUser, assignee: self.assignee, points: Int(pointTextField.text!)!)
+            task = Task(name: nameTextField.text, assigner:self.shareData.currentName, assignee: self.assignee, points: Int(pointTextField.text!)!)
             return true
         }
         return false

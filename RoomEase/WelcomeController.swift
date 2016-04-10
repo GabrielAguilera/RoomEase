@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import Firebase
 import FBSDKLoginKit
 import UIKit
 
@@ -33,37 +34,78 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
         if (FBSDKAccessToken.currentAccessToken() == nil) {
             print("No token found.")
         } else{
-            print("Token found. Starting segue.")
-            // TODO:
-            // We should check that their login that has given us their id
-            // and see if they are already a user of this service.
-            //self.shareData.get_user(<#T##username: String##String#>, callback: <#T##(NSDictionary) -> Void#>)
-            //
-            let fbID = FBSDKAccessToken.currentAccessToken().userID
-            self.shareData.get_user(fbID, callback: { (user: NSDictionary) in
-                //this means the user does not exist
-                if (user == NSDictionary()){
-                    self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
-                } else {
-                    self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
-                }
-                
-            })
-            
+            print("Token found.")
+            requestAndStoreUserData()
         }
     }
     
     override func didReceiveMemoryWarning() {}
     
     /*
-    * Conformation for FBSDKLoginDelegate Protocol
-    */
+     * Conformation for FBSDKLoginDelegate Protocol
+     */
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error == nil {
             print("Log in successful.")
         } else {
             print(error.localizedDescription)
         }
+    }
+    
+    func requestAndStoreUserData() {
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,name,picture.type(large).redirect(false)"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil)
+            {
+                print("result \(result)")
+
+                // If we're gonna use core data, this is where it'd help!
+                let userId = result["id"]! as? String
+                self.shareData.currentUserId = userId!
+                
+                let name = result["name"]! as? String
+                self.shareData.currentName = name!
+                
+                let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
+                self.shareData.currentUserPhotoUrl = userPhotoUrl!
+                
+                // Examine the new data.
+                self.checkUserStatus()
+            }
+            else
+            {
+                print("error \(error)")
+            }
+        })
+    }
+    
+    func checkUserStatus() {
+        let userId = self.shareData.currentUserId
+        let ref = Firebase(url: self.shareData.ROOT_URL + "users/" + userId)
+        ref.observeSingleEventOfType(FEventType.Value, withBlock: { snapshot in
+            print("Snapshot value: \(snapshot)")
+            if snapshot.value is NSNull {
+                print("This is a new user to the application.")
+                // Push the new user object with inHome(false) and then segue
+                self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
+            } else {
+                print("This user has been in the application before.")
+
+                // Check if they're in a home already on firebase
+                let inHome = snapshot.value.objectForKey("inHome") as! Bool
+                print("inHome: \(inHome)")
+                
+                if inHome {
+                    print("This user is in already in a home.")
+                    self.shareData.currentHomeId = "home1"
+//                    self.shareData.currentHomeId = snapshot.value.objectForKey("homeId") as! String
+                    self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
+                } else {
+                    print("This user is not in a home yet.")
+                    self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
+                }
+            }
+        })
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){}
