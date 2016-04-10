@@ -27,12 +27,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
          // Do any additional setup after loading the view, typically from a nib.
         
-        userNameLabel.text = self.shareData.currentName
+        userNameLabel.text = self.shareData.currentUser
         if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
             self.userProfileImage.image = UIImage(data: data)!.circle
         }
-        
         fbButton.delegate = self
+        userPoints.text = String(self.shareData.roommateRankings[self.shareData.currentUser]!)
     }
     
     override func viewDidAppear(animated: Bool) {

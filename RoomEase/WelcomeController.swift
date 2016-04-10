@@ -64,7 +64,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
                 self.shareData.currentUserId = userId!
                 
                 let name = result["name"]! as? String
-                self.shareData.currentName = name!
+                self.shareData.currentUser = name!
                 
                 let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
                 self.shareData.currentUserPhotoUrl = userPhotoUrl!
@@ -111,7 +111,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     
     func createUser()
     {
-        let data = ["name": self.shareData.currentName, "inHome": false, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
+        let data = ["name": self.shareData.currentUser, "inHome": false, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
         let ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId)
         ref.setValue(data)
     }
