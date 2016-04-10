@@ -32,12 +32,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if(error == nil)
             {
                 print("result \(result)")
-                let 😘 = result["name"]! as? String?
-                username = 😘!!
+                let firstLastName = result["name"]! as? String?
+                username = firstLastName!!
                 
-                let 👻 = result["id"]! as? String
+                let userID = result["id"]! as? String
                 
-                self.shareData.currentUserId = 👻!
+                self.shareData.currentUserId = userID!
                 
                 let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
                 self.shareData.currentUserPhotoUrl = userPhotoUrl!
@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let firstName = nameArray[0]
                 let homeId = "home1"
                 //pushes user data to firebase
-                self.shareData.push_user(👻!, values: ["username": username!, "photo_url": userPhotoUrl!, "name": nameArray[0] + " " + nameArray[1], "homeId": homeId])
+                self.shareData.push_user(userID!, values: ["username": userID!, "photo_url": userPhotoUrl!, "name":username!, "homeId": homeId])
                 
                 self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
                 self.shareData.currentUser = username!

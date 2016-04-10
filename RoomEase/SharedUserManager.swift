@@ -151,7 +151,7 @@ class ShareData {
     func get_roomate_rankings(homeID:String, callback:([(String, Int)]) -> Void) {
         let ref = Firebase(url: self.ROOT_URL + "users")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            var roomate_scores = [String:Int]()
+           // var roomate_scores = [String:Int]()
             //This loop builds the array from the Firebase snap
             for item in snapshot.children {
                 let user = item as! FDataSnapshot
@@ -159,10 +159,11 @@ class ShareData {
                 let user_home = String(user.childSnapshotForPath("homeId").value)
                 if (homeID == user_home) {
                     //get the username from the tuple
-                    let user_name = user.key
-                    //get the users points from the child value
                     let user_points = Int(String(user.childSnapshotForPath("points").value))
-                    roomate_scores[user_name] = user_points
+                    let userName = String(user.childSnapshotForPath("name").value)                    
+                    self.roommateRankings[userName] = user_points
+                    
+                    
                 }
             }
             //function for sorting by value
@@ -175,7 +176,7 @@ class ShareData {
                 }
             }
             //sorts roomates by value
-            let sorted_roomate_scores = roomate_scores.sort(byValue)
+            let sorted_roomate_scores = self.roommateRankings.sort(byValue)
             callback(sorted_roomate_scores)
         })
     }

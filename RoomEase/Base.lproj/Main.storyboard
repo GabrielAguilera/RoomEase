@@ -288,7 +288,7 @@
                                 <color key="textColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="25FC6BBA-B588-4235-B374-0756ACA0BC4E" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="74E93850-4049-4FA1-9E03-9046698AB9D8" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-PV-dVO">
                                 <rect key="frame" x="74.5" y="72" width="240" height="160"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewe-mn-ApM">
@@ -565,7 +565,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="25FC6BBA-B588-4235-B374-0756ACA0BC4E" width="723" height="745">
+        <image name="74E93850-4049-4FA1-9E03-9046698AB9D8" width="723" height="745">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
