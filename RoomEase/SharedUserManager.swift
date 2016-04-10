@@ -196,6 +196,18 @@ class ShareData {
     }
     
     
+    func checkIfUserExists(userID:String) -> Bool {
+        let ref = Firebase(url: self.ROOT_URL + "users")
+        if((ref.childByAppendingPath(currentUserId)) != nil) {
+            print("was able to find user" + self.currentUser + " already in Firebase!")
+            return true;
+        }
+        print("was NOT able to find user " + self.currentUser + "already in Firebase!")
+        return false;
+
+    }
+    
+    
     //example usage:
     //--------------
     //ShareData().push_task(["homeId":"home1", "points": "5", "title": "test"])

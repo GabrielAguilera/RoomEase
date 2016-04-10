@@ -48,7 +48,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let firstName = nameArray[0]
                 let homeId = "home1"
                 //pushes user data to firebase
-                self.shareData.push_user(userID!, values: ["username": userID!, "photo_url": userPhotoUrl!, "name":username!, "homeId": homeId])
+                if(!self.shareData.checkIfUserExists(userID!)) {
+                    self.shareData.push_user(userID!, values: ["username": userID!, "photo_url": userPhotoUrl!, "name":username!, "homeId": homeId])
+                }
                 
                 self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
                 self.shareData.currentUser = username!
