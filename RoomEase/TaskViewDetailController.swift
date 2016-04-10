@@ -22,12 +22,12 @@ class TaskViewDetailController: UITableViewController {
     
     
     required init?(coder aDecoder: NSCoder) {
-        print("init PlayerDetailsViewController")
+        print("init TaskDetails")
         super.init(coder: aDecoder)
     }
     
     deinit {
-        print("deinit PlayerDetailsViewController")
+        print("deinit TaskDetails")
     }
     
     override func viewDidLoad() {
@@ -51,10 +51,12 @@ class TaskViewDetailController: UITableViewController {
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickRoommate" {
-            assignee = "Jessi Aboukasm"
+            print("ENTERED THE PICKROOMMATE SEGUE")
+            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
+                RoommatePickerViewController.selectedRoommate = assignee
+            }
         }
     }
-    
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "SaveTaskDetail" {
@@ -74,12 +76,18 @@ class TaskViewDetailController: UITableViewController {
                 alert.show()
                 return false
             }
-            else if(identifier == "PickRoommate") {
-                performSegueWithIdentifier("PickRoommate", sender: self)
-            }
             task = Task(name: nameTextField.text, assigner:self.shareData.currentUser, assignee: self.assignee, points: Int(pointTextField.text!)!)
             return true
         }
+        else if(identifier == "PickRoommate") {
+            print("going to prepare pickRoommate segue")
+            
+            performSegueWithIdentifier("PickRoommate", sender: self)
+        }
+
+        
+        
+        
         return false
     }
 
