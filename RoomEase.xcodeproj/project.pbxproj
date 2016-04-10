@@ -18,6 +18,7 @@
 		3291F0C71C9F429C00E7F281 /* RoomEaseData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0C51C9F429C00E7F281 /* RoomEaseData.xcdatamodeld */; };
 		3291F0C91C9F52F200E7F281 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0C81C9F52F200E7F281 /* DataController.swift */; };
 		3291F0CB1C9FA79E00E7F281 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3291F0CA1C9FA79E00E7F281 /* UserViewController.swift */; };
+		32E1A8341CB9D79A00B4C51D /* CreateHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1A8331CB9D79A00B4C51D /* CreateHomeViewController.swift */; };
 		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
 		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
 		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; };
@@ -58,6 +59,7 @@
 		3291F0C61C9F429C00E7F281 /* RoomEaseData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoomEaseData.xcdatamodel; sourceTree = "<group>"; };
 		3291F0C81C9F52F200E7F281 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		3291F0CA1C9FA79E00E7F281 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		32E1A8331CB9D79A00B4C51D /* CreateHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateHomeViewController.swift; sourceTree = "<group>"; };
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				FE8A0EAC1C7F78DF006B4C5C /* AppDelegate.swift */,
 				FE8A0EB01C7F78DF006B4C5C /* ChatViewController.swift */,
+				32E1A8331CB9D79A00B4C51D /* CreateHomeViewController.swift */,
 				328CD0CE1CB3A4A900F8A079 /* CustomTabBarController.swift */,
 				3291F0C81C9F52F200E7F281 /* DataController.swift */,
 				FE8A0EAE1C7F78DF006B4C5C /* HomeViewController.swift */,
@@ -234,7 +237,7 @@
 				TargetAttributes = {
 					FE8A0EA61C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4J5RU7K988;
+						DevelopmentTeam = 8D3LLFACDB;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 0;
@@ -303,6 +306,7 @@
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,
 				3291F0C91C9F52F200E7F281 /* DataController.swift in Sources */,
 				FE8A0EAF1C7F78DF006B4C5C /* HomeViewController.swift in Sources */,
+				32E1A8341CB9D79A00B4C51D /* CreateHomeViewController.swift in Sources */,
 				3291F0C71C9F429C00E7F281 /* RoomEaseData.xcdatamodeld in Sources */,
 				FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */,
 			);
