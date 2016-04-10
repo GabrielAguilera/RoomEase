@@ -31,8 +31,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
             self.userProfileImage.image = UIImage(data: data)!.circle
         }
-        
         fbButton.delegate = self
+        userPoints.text = String(self.shareData.roommateRankings[self.shareData.currentUser]!)
     }
     
     override func viewDidAppear(animated: Bool) {
