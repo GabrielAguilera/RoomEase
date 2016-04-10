@@ -20,7 +20,7 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         if fbInstalled && self.viewControllers?.count == 2 {
             let messengerView = ChatViewController()
-            let messengerItem = UITabBarItem(title: "Messenger", image: UIImage(named: "facebookMessenger"), selectedImage: UIImage(named: "Messenger"))
+            let messengerItem = UITabBarItem(title: "Messenger", image: UIImage(named: "facebookMessenger"), selectedImage: UIImage(named: "facebookMessenger"))
             messengerView.tabBarItem = messengerItem
             self.viewControllers?.insert(messengerView, atIndex: 1)
         }
