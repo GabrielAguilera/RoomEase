@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 username = 😘!!
                 
                 let 👻 = result["id"]! as? String
+                
                 self.shareData.currentUserId = 👻!
                 
                 let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
@@ -45,9 +46,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
                 var nameArray = username!.componentsSeparatedByString(" ")
                 let firstName = nameArray[0]
+                let homeId = "home1"
+                //pushes user data to firebase
+                self.shareData.push_user(👻!, values: ["username": username!, "photo_url": userPhotoUrl!, "name": nameArray[0] + " " + nameArray[1], "homeId": homeId])
                 
                 self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
                 self.shareData.currentUser = username!
+                
+                self.shareData.get_roomate_rankings(homeId, callback: {(pulled_rankings) in
+                    for tuple in pulled_rankings {
+                        self.shareData.roommateRankings[tuple.0] = tuple.1
+                    }
+                    self.taskTableView.reloadData()
+                })
                 
             }
             else
@@ -111,13 +122,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
-        var sortedNames = retrieveRoommateRankings()
+        
+        if (indexPath.row >= self.shareData.roommateRankings.count) {
+            return myCell
+        }
+        let sortedNames = retrieveRoommateRankings()
         let sortedTasks = retrieveTaskRankings()
+        let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
+        let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
-            let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
-            let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
+            
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
             if(self.shareData.bestRoommate) {
@@ -126,39 +142,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             else {
                 bestRoommateLabel.hidden = true
             }
-//            let ref = Firebase(url: "https://fiery-heat-3695.firebaseio.com/users")
-//            ref.observeEventType(.Value, withBlock: { snapshot in
-//                var roomate_scores = [String:Int]()
-//                //This loop builds the array from the Firebase snap
-//                for item in snapshot.children {
-//                    let user = item as! FDataSnapshot
-//                    //get the username from the tuple
-//                    let user_name = user.key
-//                    //get the users points from the child value
-//                    let user_points = Int(String(user.childSnapshotForPath("points").value))
-//                    roomate_scores[user_name] = user_points
-//                }
-//                //function for sorting by value
-//                let byValue = {
-//                    (elem1:(key: String, val: Int), elem2:(key: String, val: Int))->Bool in
-//                    if elem1.val > elem2.val {
-//                        return true
-//                    } else {
-//                        return false
-//                    }
-//                }
-//                //sorts roomates by value
-//                let sorted_roomate_scores = roomate_scores.sort(byValue)
-//                //converts dict to string array to be inserted into ist view
-//                for (key, value) in sorted_roomate_scores {
-//                    sortedNames.append("\(key)  |   \(value)")
-//                }
-//                
-//                //inserts the strings into cells in listview
-//                let cellText = sortedNames[indexPath.row]
-//                myCell.textLabel!.text = cellText
-//                self.addTaskButton.hidden = true
-//            })
+
 
             break
         case 1:

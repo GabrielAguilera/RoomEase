@@ -12,6 +12,7 @@ import UIKit
 class TaskViewDetailController: UITableViewController {
     
     var task:Task?
+    var assignee:String = ""
     let shareData = ShareData.sharedInstance
     
     
@@ -47,15 +48,48 @@ class TaskViewDetailController: UITableViewController {
         }
     }
     
-    
+  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SaveTaskDetail" {
-            task = Task(name: nameTextField.text, assigner:"me", assignee: "", points: Int(pointTextField.text!)!)
+        if segue.identifier == "PickRoommate" {
+            assignee = "Jessi Aboukasm"
         }
-//        if segue.identifier == "PickRoommate" {
-//            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
-//                RoommatePickerViewController.selectedRoommate = assignee
-//            }
-//        }
     }
-}
+    
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "SaveTaskDetail" {
+            if(nameTextField.text == "") {
+                let alert = UIAlertView()
+                alert.title = "Whoa there!"
+                alert.message = "You can't assign a blank task."
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+                return false
+            }
+            else if(pointTextField.text == "") {
+                let alert = UIAlertView()
+                alert.title = "Whoops!"
+                alert.message = "Please assign a point value to this task."
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+                return false
+            }
+            else if(identifier == "PickRoommate") {
+                performSegueWithIdentifier("PickRoommate", sender: self)
+            }
+            task = Task(name: nameTextField.text, assigner:self.shareData.currentUser, assignee: self.assignee, points: Int(pointTextField.text!)!)
+            return true
+        }
+        return false
+    }
+
+
+
+
+
+
+
+} // TaskDetailViewController
+
+
+

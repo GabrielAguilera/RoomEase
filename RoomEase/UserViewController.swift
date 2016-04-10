@@ -20,7 +20,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var fbButton: FBSDKLoginButton!
     
-    let shareData = ShareData.sharedInstance
+    var shareData = ShareData.sharedInstance
 
     /* Conformation for UIViewController Protocol */
     

@@ -15,11 +15,11 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     let shareData = ShareData.sharedInstance
     
     /*
-     * Conformation for UIView Controller 
-     */
+    * Conformation for UIView Controller
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let fbBtn = FBSDKLoginButton()
         fbBtn.readPermissions = ["public_profile", "email", "user_friends"]
         fbBtn.center = self.view.center
@@ -37,15 +37,27 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
             // TODO:
             // We should check that their login that has given us their id
             // and see if they are already a user of this service.
-            self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
+            //self.shareData.get_user(<#T##username: String##String#>, callback: <#T##(NSDictionary) -> Void#>)
+            //
+            let fbID = FBSDKAccessToken.currentAccessToken().userID
+            self.shareData.get_user(fbID, callback: { (user: NSDictionary) in
+                //this means the user does not exist
+                if (user == NSDictionary()){
+                    self.performSegueWithIdentifier("LoggedInNewSegue", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
+                }
+                
+            })
+            
         }
     }
     
     override func didReceiveMemoryWarning() {}
     
     /*
-     * Conformation for FBSDKLoginDelegate Protocol 
-     */
+    * Conformation for FBSDKLoginDelegate Protocol
+    */
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if error == nil {
             print("Log in successful.")
@@ -57,8 +69,8 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!){}
     
     /*
-     * Misc
-     */
+    * Misc
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
