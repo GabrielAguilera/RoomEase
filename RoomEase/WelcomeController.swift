@@ -107,7 +107,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     
     func createUser()
     {
-        let data = ["name": self.shareData.currentUser, "inHome": false, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
+        let data = ["name": self.shareData.currentUser, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
         let ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId)
         ref.setValue(data)
     }
