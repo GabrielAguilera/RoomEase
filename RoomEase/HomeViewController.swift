@@ -25,49 +25,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskTableView.delegate = self
-        var username:String?
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,picture.type(large).redirect(false)"], tokenString: FBSDKAccessToken.currentAccessToken().tokenString, version: nil, HTTPMethod: "GET")
-        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-            if(error == nil)
-            {
-                print("result \(result)")
-                let firstLastName = result["name"]! as? String?
-                username = firstLastName!!
-                
-                let userID = result["id"]! as? String
-                
-                self.shareData.currentUserId = userID!
-                
-                let userPhotoUrl = result["picture"]?!["data"]?!["url"] as? String
-                self.shareData.currentUserPhotoUrl = userPhotoUrl!
-                
-                print("returning the user name as: \(username!)")
         
-                var nameArray = username!.componentsSeparatedByString(" ")
-                let firstName = nameArray[0]
-                let homeId = "home1"
-                //pushes user data to firebase
-                if(!self.shareData.checkIfUserExists(userID!)) {
-                    self.shareData.push_user(userID!, values: ["username": userID!, "photo_url": userPhotoUrl!, "name":username!, "homeId": homeId])
-                }
-                
-                self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
-                self.shareData.currentUser = username!
-                
-                self.shareData.get_roomate_rankings(homeId, callback: {(pulled_rankings) in
-                    for tuple in pulled_rankings {
-                        self.shareData.roommateRankings[tuple.0] = tuple.1
-                    }
-                    self.taskTableView.reloadData()
-                })
-                
-            }
-            else
-            {
-                print("error \(error)")
+        let username:String = self.shareData.currentUser
+        var nameArray = username.componentsSeparatedByString(" ")
+        let firstName = nameArray[0]
+        
+        self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
+        
+        self.shareData.get_roomate_rankings(self.shareData.currentHomeId, callback: {(pulled_rankings) in
+            for tuple in pulled_rankings {
+                self.shareData.roommateRankings[tuple.0] = tuple.1
             }
             self.taskTableView.reloadData()
         })
+        self.taskTableView.reloadData()
     }
     
     
