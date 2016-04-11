@@ -33,6 +33,8 @@
 		FE8A0EB61C7F78DF006B4C5C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */; };
 		FE8A0EB91C7F78DF006B4C5C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */; };
 		FE8A0EC51C7F78DF006B4C5C /* RoomEaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */; };
+		FEA97F181CBBF02A002E2C6C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA97F171CBBF02A002E2C6C /* WelcomeViewController.swift */; };
+		FEA97F1A1CBBF893002E2C6C /* stairsLoft.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FEA97F191CBBF893002E2C6C /* stairsLoft.jpg */; };
 		FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */; };
 		FED8B7191C900FB600CA6CBE /* lindsay.png in Resources */ = {isa = PBXBuildFile; fileRef = FED8B7181C900FB600CA6CBE /* lindsay.png */; };
 		FEDBD8FB1C9DED94003D7316 /* TaskViewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */; };
@@ -80,6 +82,8 @@
 		FE8A0EBE1C7F78DF006B4C5C /* RoomEaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomEaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8A0EC31C7F78DF006B4C5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE8A0EC41C7F78DF006B4C5C /* RoomEaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEaseTests.swift; sourceTree = "<group>"; };
+		FEA97F171CBBF02A002E2C6C /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		FEA97F191CBBF893002E2C6C /* stairsLoft.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stairsLoft.jpg; path = RoomEase/stairsLoft.jpg; sourceTree = "<group>"; };
 		FED8B7161C8FD11A00CA6CBE /* SharedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedUserManager.swift; sourceTree = "<group>"; };
 		FED8B7181C900FB600CA6CBE /* lindsay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lindsay.png; sourceTree = "<group>"; };
 		FEDBD8FA1C9DED94003D7316 /* TaskViewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewDetailController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				324CC3161C9A45CF009A2230 /* SystemConfiguration.framework */,
 				FED8B7181C900FB600CA6CBE /* lindsay.png */,
 				FE51E9141C8F43A0004116AA /* logo.png */,
+				FEA97F191CBBF893002E2C6C /* stairsLoft.jpg */,
 				FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */,
 				324CC3101C9A45B5009A2230 /* libc++.tbd */,
 				324CC30E1C9A45A6009A2230 /* libicucore.tbd */,
@@ -162,6 +167,7 @@
 				FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */,
 				FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */,
 				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
+				FEA97F171CBBF02A002E2C6C /* WelcomeViewController.swift */,
 				3291F0C51C9F429C00E7F281 /* RoomEaseData.xcdatamodeld */,
 				FE8A0EAA1C7F78DF006B4C5C /* Supporting Files */,
 			);
@@ -286,6 +292,7 @@
 				FE51E9151C8F43A0004116AA /* logo.png in Resources */,
 				FE8A0EB91C7F78DF006B4C5C /* LaunchScreen.xib in Resources */,
 				FE8A0EB61C7F78DF006B4C5C /* Images.xcassets in Resources */,
+				FEA97F1A1CBBF893002E2C6C /* stairsLoft.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +316,7 @@
 				32E1A8381CBB22CF00B4C51D /* JoinHomeViewController.swift in Sources */,
 				328CD0CF1CB3A4A900F8A079 /* CustomTabBarController.swift in Sources */,
 				FE8A0EB11C7F78DF006B4C5C /* ChatViewController.swift in Sources */,
+				FEA97F181CBBF02A002E2C6C /* WelcomeViewController.swift in Sources */,
 				3291F0B81C9DF7FB00E7F281 /* WelcomeController.swift in Sources */,
 				FEDBD8FB1C9DED94003D7316 /* TaskViewDetailController.swift in Sources */,
 				FE8A0EAD1C7F78DF006B4C5C /* AppDelegate.swift in Sources */,

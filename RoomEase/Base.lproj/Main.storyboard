@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="va8-hq-vN5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="va8-hq-vN5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -398,7 +398,7 @@
         <!--New User-->
         <scene sceneID="MnS-dv-6EO">
             <objects>
-                <viewController title="New User" id="hHU-Z5-kh7" sceneMemberID="viewController">
+                <viewController title="New User" id="hHU-Z5-kh7" customClass="WelcomeUIViewController" customModule="RoomEase" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Z3-EK-ueS"/>
                         <viewControllerLayoutGuide type="bottom" id="2Vl-jP-H3M"/>
@@ -439,6 +439,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="WelcomeLabel" destination="rUC-In-f0R" id="ktY-02-ulM"/>
+                        <outlet property="createLabel" destination="udC-QB-wnT" id="L0q-xR-Kqk"/>
+                        <outlet property="joinLabel" destination="MKn-nr-HqH" id="V8A-uF-sLx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygd-hG-nef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -576,7 +581,7 @@
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rIB-R5-y5b"/>
+        <segue reference="XVA-h9-Z3P"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
 </document>
