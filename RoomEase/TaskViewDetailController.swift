@@ -20,7 +20,6 @@ class TaskViewDetailController: UITableViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var pointTextField: UITextField!
     
-    
     required init?(coder aDecoder: NSCoder) {
         print("init TaskDetails")
         super.init(coder: aDecoder)
@@ -51,7 +50,6 @@ class TaskViewDetailController: UITableViewController {
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickRoommate" {
-            print("ENTERED THE PICKROOMMATE SEGUE")
             if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
                 RoommatePickerViewController.selectedRoommate = assignee
             }
@@ -81,11 +79,12 @@ class TaskViewDetailController: UITableViewController {
             return true
         }
         else if(identifier == "PickRoommate") {
-            print("going to prepare pickRoommate segue")
-            
+            print("entering pick roommate identifier")
             performSegueWithIdentifier("PickRoommate", sender: self)
         }
-
+        else {
+            print("indentifier is " + identifier)
+        }
         
         
         
