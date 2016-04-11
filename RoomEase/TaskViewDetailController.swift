@@ -12,7 +12,13 @@ import UIKit
 class TaskViewDetailController: UITableViewController {
     
     var task:Task?
-    var assignee:String = ""
+
+    var assignee:String = "" {
+        didSet {
+            detailLabel.text? = assignee
+        }
+    }
+    
     let shareData = ShareData.sharedInstance
     
     
@@ -50,9 +56,9 @@ class TaskViewDetailController: UITableViewController {
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickRoommate" {
-            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
-                RoommatePickerViewController.selectedRoommate = assignee
-            }
+//            if let roommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
+//                    assignee = roommatePickerViewController.selectedRoommate!
+//                }
         }
     }
     
@@ -85,16 +91,16 @@ class TaskViewDetailController: UITableViewController {
         else {
             print("indentifier is " + identifier)
         }
-        
-        
-        
         return false
     }
 
-
-
-
-
+    //Unwind segue
+    @IBAction func unwindWithSelectedRoommate(segue:UIStoryboardSegue) {
+        if let roommatePickerViewController = segue.sourceViewController as? RoommatePickerViewController,
+            selectedRoommate = roommatePickerViewController.selectedRoommate {
+                assignee = selectedRoommate
+        }
+    }
 
 
 } // TaskDetailViewController

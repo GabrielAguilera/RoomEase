@@ -58,6 +58,7 @@ var selectedRoommateIndex:Int?
         }
         
         selectedRoommate = roommates[indexPath.row]
+        print("selected roommate was set!!! value: " + selectedRoommate!)
         
         //update the checkmark for the current row
         let cell = tableView.cellForRowAtIndexPath(indexPath)

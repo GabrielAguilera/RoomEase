@@ -187,12 +187,12 @@
                     <navigationItem key="navigationItem" title="Add Task" id="qV9-gM-FTm" userLabel="Add Task">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="0B2-Op-oYG" userLabel="Cancel">
                             <connections>
-                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="cancelToHomeViewController:" id="9oU-Ib-zkT"/>
+                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="cancelToHomeViewController:" id="dbX-CT-FBg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="giH-Ft-bbj" userLabel="Done">
                             <connections>
-                                <segue destination="KQO-Wn-d9A" kind="unwind" identifier="SaveTaskDetail" unwindAction="saveTaskDetail:" id="ISR-jO-Fir"/>
+                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="saveTaskDetail:" id="ycL-M9-NqJ"/>
                             </connections>
                         </barButtonItem>
                         <attributedString key="userComments">
@@ -240,6 +240,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="6IE-1Q-L2i" kind="unwind" unwindAction="unwindWithSelectedRoommate:" id="Uuu-Pj-M3H"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -249,6 +252,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7d-ee-hYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6IE-1Q-L2i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1291" y="2478"/>
         </scene>
