@@ -123,6 +123,7 @@ class ShareData {
 //      print(roomates)
 //  })
     func get_roomate_rankings(homeID:String, callback:([(String, Int)]) -> Void) {
+        self.roommateRankings.removeAll()
         let ref = Firebase(url: self.ROOT_URL + "users")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
            // var roomate_scores = [String:Int]()
