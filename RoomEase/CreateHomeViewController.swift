@@ -74,6 +74,7 @@ class CreateHomeViewController: UIViewController {
                 // Alert user that this home already exists
                 let alertController = UIAlertController(title: "Home Exists!", message: "Please enter a different home name to continue!", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         })
     }
