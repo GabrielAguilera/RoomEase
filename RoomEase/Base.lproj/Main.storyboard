@@ -154,18 +154,18 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7dJ-Kr-GLn" kind="showDetail" identifier="PickRoommate" animates="NO" id="9wl-98-hHk"/>
+                                            <segue destination="zwW-hx-2M4" kind="show" identifier="PickRoommate" id="nli-hJ-PIH"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Point Value" id="ReT-1E-A8v">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="C9c-YT-kM1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="C9c-YT-kM1">
                                         <rect key="frame" x="0.0" y="301.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9c-YT-kM1" id="e8u-BE-ulZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EZI-co-W4F">
@@ -187,12 +187,12 @@
                     <navigationItem key="navigationItem" title="Add Task" id="qV9-gM-FTm" userLabel="Add Task">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="0B2-Op-oYG" userLabel="Cancel">
                             <connections>
-                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="cancelToHomeViewController:" id="9oU-Ib-zkT"/>
+                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="cancelToHomeViewController:" id="dbX-CT-FBg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="giH-Ft-bbj" userLabel="Done">
                             <connections>
-                                <segue destination="KQO-Wn-d9A" kind="unwind" identifier="SaveTaskDetail" unwindAction="saveTaskDetail:" id="ISR-jO-Fir"/>
+                                <segue destination="KQO-Wn-d9A" kind="unwind" unwindAction="saveTaskDetail:" id="ycL-M9-NqJ"/>
                             </connections>
                         </barButtonItem>
                         <attributedString key="userComments">
@@ -215,54 +215,46 @@
             </objects>
             <point key="canvasLocation" x="608" y="2478"/>
         </scene>
-        <!--Choose Roommate-->
-        <scene sceneID="EVN-wk-Alc">
+        <!--Roommate Picker View Controller-->
+        <scene sceneID="HOX-xM-DQN">
             <objects>
-                <tableViewController title="Choose Roomate" id="7dJ-Kr-GLn" userLabel="Choose Roommate" customClass="RoommatePickerViewController" customModule="RoomEase" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Hf-5f-Vqf">
+                <tableViewController id="zwW-hx-2M4" customClass="RoommatePickerViewController" customModule="RoomEase" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ix4-ub-fwb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoommateCell" textLabel="W7X-fK-Ozb" style="IBUITableViewCellStyleDefault" id="RYa-8w-W8Y">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RoommateCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoommateCell" textLabel="clD-15-Ed5" style="IBUITableViewCellStyleDefault" id="vok-qy-mpy">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RYa-8w-W8Y" id="oc9-Au-5Pt">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vok-qy-mpy" id="Cty-Wg-cVv">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W7X-fK-Ozb">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="clD-15-Ed5">
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="6IE-1Q-L2i" kind="unwind" unwindAction="unwindWithSelectedRoommate:" id="Uuu-Pj-M3H"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="7dJ-Kr-GLn" id="Gnu-tv-spB"/>
-                            <outlet property="delegate" destination="7dJ-Kr-GLn" id="fQm-7D-AsI"/>
+                            <outlet property="dataSource" destination="zwW-hx-2M4" id="g2z-Su-O3j"/>
+                            <outlet property="delegate" destination="zwW-hx-2M4" id="PbR-cX-oDL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Task" id="hTe-bw-JwT" userLabel="Add Task">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="9f5-0H-Xa9" userLabel="Cancel"/>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="qAo-2S-LaT" userLabel="Done"/>
-                        <attributedString key="userComments">
-                            <fragment content="Add Task">
-                                <attributes>
-                                    <font key="NSFont" metaFont="controlContent" size="11"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z5p-KQ-Mkx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u7d-ee-hYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6IE-1Q-L2i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1421" y="2478"/>
+            <point key="canvasLocation" x="1291" y="2478"/>
         </scene>
         <!--User-->
         <scene sceneID="paB-9w-hoK">

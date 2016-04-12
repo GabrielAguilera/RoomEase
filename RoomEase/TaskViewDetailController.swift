@@ -12,14 +12,19 @@ import UIKit
 class TaskViewDetailController: UITableViewController {
     
     var task:Task?
-    var assignee:String = ""
+
+    var assignee:String = "" {
+        didSet {
+            detailLabel.text? = assignee
+        }
+    }
+    
     let shareData = ShareData.sharedInstance
     
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var pointTextField: UITextField!
-    
     
     required init?(coder aDecoder: NSCoder) {
         print("init TaskDetails")
@@ -51,10 +56,9 @@ class TaskViewDetailController: UITableViewController {
   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickRoommate" {
-            print("ENTERED THE PICKROOMMATE SEGUE")
-            if let RoommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
-                RoommatePickerViewController.selectedRoommate = assignee
-            }
+//            if let roommatePickerViewController = segue.destinationViewController as? RoommatePickerViewController {
+//                    assignee = roommatePickerViewController.selectedRoommate!
+//                }
         }
     }
     
@@ -81,21 +85,22 @@ class TaskViewDetailController: UITableViewController {
             return true
         }
         else if(identifier == "PickRoommate") {
-            print("going to prepare pickRoommate segue")
-            
+            print("entering pick roommate identifier")
             performSegueWithIdentifier("PickRoommate", sender: self)
         }
-
-        
-        
-        
+        else {
+            print("indentifier is " + identifier)
+        }
         return false
     }
 
-
-
-
-
+    //Unwind segue
+    @IBAction func unwindWithSelectedRoommate(segue:UIStoryboardSegue) {
+        if let roommatePickerViewController = segue.sourceViewController as? RoommatePickerViewController,
+            selectedRoommate = roommatePickerViewController.selectedRoommate {
+                assignee = selectedRoommate
+        }
+    }
 
 
 } // TaskDetailViewController
