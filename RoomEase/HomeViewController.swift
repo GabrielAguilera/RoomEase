@@ -20,8 +20,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var welcomeHomeLabel: UILabel!
     
     let shareData = ShareData.sharedInstance
-    let facebookLogin = FBSDKLoginManager()
-
+    
+    struct Task {
+        let title : String
+        let points : Int
+        
+        init(title: String, points: Int){
+            self.title = title
+            self.points = points
+        }
+    }
+    
+    var localTaskList: [Task] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.taskTableView.delegate = self
@@ -31,6 +42,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let firstName = nameArray[0]
         
         self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
+
+        // Set Firebase up to observe the list of open tasks
+        let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
+        taskRef.observeEventType(FEventType.Value, withBlock: { openTasks in
+            
+            // When we get new tasks for the home, clear the ones we have
+            self.localTaskList.removeAll()
+            
+            for task in openTasks.children {
+                // Rebuild our local copy of the list
+                self.localTaskList.append(
+                    Task(title: task.value.objectForKey("title") as! String,
+                        points: task.value.objectForKey("points") as! Int))
+            }
+            
+            // Re-sort the list
+            self.retrieveTaskRankings()
+            
+            // Refresh the table
+            self.taskTableView.reloadData()
+        })
         
         self.shareData.get_roomate_rankings({(pulled_rankings) in
             for tuple in pulled_rankings {
@@ -71,7 +103,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             returnValue = self.shareData.roommateRankings.count
             break
         case 1:
-            returnValue = self.shareData.taskList.count
+            returnValue = self.localTaskList.count
             break
             
         default:
@@ -88,22 +120,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    
-    
+    // Called for every index in the UITableView and returns a constructed 
+    // UITableViewCell to present to the user
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         
+        // Returns a dummy cell if there's more cells visible than there is 
+        // useful data to display.
         if (indexPath.row >= self.shareData.roommateRankings.count) {
             return myCell
         }
+        
+        
         let sortedNames = retrieveRoommateRankings()
-        let sortedTasks = retrieveTaskRankings()
-        let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
-        let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
+
         switch(homeSegmentedControl.selectedSegmentIndex)
         {
         case 0:
+            let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
+            let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
@@ -113,12 +149,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             else {
                 bestRoommateLabel.hidden = true
             }
-
-
             break
+            
         case 1:
-            let pointValue = String(self.shareData.taskList[sortedTasks[indexPath.row]]!)
-            let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
+            let pointValue = String(self.localTaskList[indexPath.row].points)
+            let cellText = pointValue + "  |   " + self.localTaskList[indexPath.row].title
+            
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
             bestRoommateLabel.hidden = true
@@ -126,12 +162,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         default:
             break
-            
         }
         
         return myCell
     }
     
+    // The return value of this function determines whether or not a cell
+    // will be editable. We only want task cells to have this functionality.
+    // This is called by each cell when it is displayed.
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if(self.homeSegmentedControl.selectedSegmentIndex == 1) {
             return true
@@ -141,17 +179,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
 
+    // This function is called when you swipe left on a cell and reveals the
+    // UITableViewRowAction which in this case is "Add to My Tasks".
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let sortedTasks = retrieveTaskRankings()
         let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
             print("Add Task button tapped")
-            self.shareData.userSelectedTasks[sortedTasks[indexPath.row]] = self.shareData.taskList[sortedTasks[indexPath.row]]
-            self.shareData.taskList.removeValueForKey(sortedTasks[indexPath.row])
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            self.shareData.userSelectedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
+//            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
         task.backgroundColor = UIColor.lightGrayColor()
         
@@ -168,18 +205,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // Sorts roommates by current amount of points
     func retrieveRoommateRankings() -> Array<String> {
         let sortedArray = self.shareData.roommateRankings.sort({$0.1 > $1.1})
         let nameList: [String] = sortedArray.map {return $0.0 }
         return nameList
     }
 
-    func retrieveTaskRankings() -> Array<String> {
-        let sortedArray = self.shareData.taskList.sort({$0.1 > $1.1})
-        let tasks: [String] = sortedArray.map {return $0.0 }
-        return tasks
+    // Sorts tasks by point value
+    func retrieveTaskRankings() {
+//        let sortedArray = self.localTaskList.sort({$0.1 > $1.1})
+//        let tasks: [String] = sortedArray.map {return $0.0 }
+//        return tasks
     }
 
+    // Animation when roommate rankings change
     func tableUpdateForRoommateRankings() {
             UIView.transitionWithView(taskTableView,
                 duration:1.2,
@@ -202,25 +242,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
-        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
-            
-            // error handling for duplicate tasks
-            if let task = taskViewDetailController.task {
-                if((self.shareData.taskList[task.name!]) != nil) {
-                    let alert = UIAlertView()
-                    alert.title = "Whoops!"
-                    alert.message = "We think this is already a task in the house."
-                    alert.addButtonWithTitle("Ok")
-                    alert.show()
-                }
-                else {
-                    self.shareData.taskList[task.name!] = task.pointVal
-                    //update the tableView
-                    let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
-                taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                }
-            }
-        }
+//        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
+//            
+//            // error handling for duplicate tasks
+//            if let task = taskViewDetailController.task {
+////                if((self.shareData.taskList[task.name!]) != nil) {
+//                    let alert = UIAlertView()
+//                    alert.title = "Whoops!"
+//                    alert.message = "We think this is already a task in the house."
+//                    alert.addButtonWithTitle("Ok")
+//                    alert.show()
+//                }
+//                else {
+//                    self.shareData.taskList[task.name!] = task.pointVal
+//                    //update the tableView
+//                    let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
+//                taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//                }
+//            }
+//        }
     }
 }
 

@@ -36,31 +36,17 @@ class ShareData {
     var currentUserId:String = ""
     var currentUserPhotoUrl:String = ""
     var currentHomeId:String = ""
-    
-    var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
-    
+        
     func getPointsUrl() -> String {
         return ROOT_URL + "users/" + currentUserId + "/points"
     }
     
-//    Usage example
-//    -------------
-//    ShareData().get_open_tasks("home1", callback: { (openTasks:[String:NSDictionary]) in
-//        print(openTasks)
-//    })
-    func get_open_tasks(homeID:String, callback:([String:NSDictionary]) -> Void) {
-        let ref = Firebase(url: self.ROOT_URL + "tasks")
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            var tasks = [String:NSDictionary]()
-            let enumerator = snapshot.children
-            while let child = enumerator.nextObject() as? FDataSnapshot {
-                let task = child.value as! NSDictionary
-                if (String(task["homeId"]!) == homeID && task["assignedTo"] == nil){
-                    tasks[child.key!] = task
-                }
-            }
-            callback(tasks)
-        })
+    func getPersonalTasksUrl() -> String {
+        return ROOT_URL + "users/" + currentUserId + "/tasks/"
+    }
+    
+    func getHomeTasksUrl() -> String {
+        return ROOT_URL + "home/" + currentHomeId + "/tasks"
     }
     
 //    Gives tasks as (unique_key, dictionary)
