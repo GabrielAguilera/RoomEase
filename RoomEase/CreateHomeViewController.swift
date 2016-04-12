@@ -15,6 +15,32 @@ class CreateHomeViewController: UIViewController {
     
     let shareData = ShareData.sharedInstance
     
+    
+    override func viewDidAppear(animated: Bool) {
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        imageViewBackground.image = UIImage(named: "stairsLoft.jpg")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageViewBackground.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        imageViewBackground.addSubview(blurEffectView)
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
+
+    }
+    
+
+    
+    
+    
     @IBAction func createButtonPressed(sender: AnyObject) {
         if homeNameTextBox.text!.isEmpty {
             let alertController = UIAlertController(title: "No Home Name", message: "Please enter a homename to continue!", preferredStyle: UIAlertControllerStyle.Alert)

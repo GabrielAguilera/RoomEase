@@ -18,7 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="dwe-9q-ty9">
-                    <rect key="frame" x="47" y="97" width="301" height="287"/>
+                    <rect key="frame" x="86" y="97" width="301" height="287"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
