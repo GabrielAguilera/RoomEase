@@ -84,19 +84,6 @@ class ShareData {
         })
     }
     
-    //example
-    //---------
-    //ShareData().add_user_points("mgild", points_to_add: 5)
-    func add_user_points(username:String, points_to_add:Int) {
-        let ref = Firebase(url: self.ROOT_URL + "users/" + username)
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let user = snapshot.value as! NSDictionary
-//           AnyObject to String to int conversion below (dont know how to do Anyobject to int)
-            let new_points: [String:Int] = ["points": Int(String(user["points"]!))! + points_to_add]
-            ref.updateChildValues(new_points)
-        })
-    }
-    
     //for some reason could not get the firebase sort to work
     //sorting by value myself
     //currently uses callback that returns an array of tuples (User, score) pairs
@@ -136,33 +123,6 @@ class ShareData {
             callback(sorted_roomate_scores)
         })
     }
-    
-    
-    //example usage:
-    //-------------
-    //ShareData().push_user("test_user", values: ["fid":"111111", "name": "Testy McTester", "photo_url": "https://img0.etsystatic.com/028/0/6829852/il_570xN.638618646_4qjl.jpg","homeId":"home2"])
-    func push_user(username:String, var values:[String:String]) {
-        let ref = Firebase(url: self.ROOT_URL + "users/")
-        //TODO: throw error here
-        if (values["username"] == nil || values["homeId"] == nil || values["name"] == nil || values["photo_url"] == nil) {
-            assert(false)
-        }
-        values["points"] = "0"
-        ref.childByAppendingPath(username).setValue(values)
-    }
-    
-    
-    func checkIfUserExists(userID:String) -> Bool {
-        let ref = Firebase(url: self.ROOT_URL + "users")
-        if((ref.childByAppendingPath(currentUserId)) != nil) {
-            print("was able to find user" + self.currentUser + " already in Firebase!")
-            return true;
-        }
-        print("was NOT able to find user " + self.currentUser + "already in Firebase!")
-        return false;
-
-    }
-    
     
     //example usage:
     //--------------
