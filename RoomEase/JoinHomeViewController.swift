@@ -66,9 +66,7 @@ class JoinHomeViewController: UIViewController {
                 
                 // Update member array
                 let newMembers = homeObj.childSnapshotForPath("members").value as! NSMutableArray
-                let num = Int(self.shareData.currentUserId)
-                let myNum = NSNumber(integer:num!)
-                newMembers.addObject(myNum)
+                newMembers.addObject(self.shareData.currentUserId)
                 
                 // Push new member array
                 let homeRef = Firebase(url: self.shareData.ROOT_URL + "home/" + homeId + "/members/")
