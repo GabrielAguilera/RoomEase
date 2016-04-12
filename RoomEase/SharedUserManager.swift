@@ -27,7 +27,6 @@ class ShareData {
     }
 
     let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
-    var userSelectedTasks:[String:Int] = [:]
     var roommateRankings: [String:Int] = [:]
     
     var roommateRankingsChanged = false

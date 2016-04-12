@@ -23,6 +23,19 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var shareData = ShareData.sharedInstance
     
+    struct Task {
+        let title : String
+        let points : Int
+        let taskId : String
+        
+        init(title: String, points: Int, taskId: String){
+            self.title = title
+            self.points = points
+            self.taskId = taskId
+        }
+    }
+    
+    var localAssignedTasks: [Task] = []
     var currentPoints: Int = 0
 
     /* Conformation for UIViewController Protocol */
@@ -45,6 +58,28 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Snapshot value: \(latestPointsSnapshot)")
             self.currentPoints = latestPointsSnapshot.value as! Int
             self.userPoints.text = "+" + String(self.currentPoints)
+        })
+        
+        // Set Firebase up to observe the list of assigned tasks
+        let personalTasksRef = Firebase(url: self.shareData.getPersonalTasksUrl())
+        personalTasksRef.observeEventType(FEventType.Value, withBlock: { assignedTasks in
+            
+            // When we get new tasks for the home, clear the ones we have
+            self.localAssignedTasks.removeAll()
+            
+            for task in assignedTasks.children {
+                // Rebuild our local copy of the list
+                self.localAssignedTasks.append(
+                    Task(title: task.value.objectForKey("title") as! String,
+                        points: task.value.objectForKey("points") as! Int,
+                        taskId: task.key as String))
+            }
+            
+            // Re-sort the list
+            self.retrieveTaskRankings()
+            
+            // Refresh the table
+            self.userTaskTable.reloadData()
         })
     }
     
@@ -73,62 +108,72 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /* Conformation for UITableViewDelebate Protocol */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.shareData.userSelectedTasks.count
+        return self.localAssignedTasks.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let sortedTasks = retrieveTaskRankings()
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
 
-        let pointValue = String(self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!)
-        let cellText = pointValue + "  |   " + sortedTasks[indexPath.row]
+        let pointValue = String(self.localAssignedTasks[indexPath.row].points)
+        let cellText = pointValue + "  |   " + self.localAssignedTasks[indexPath.row].title
         myCell.textLabel!.text = cellText
         return myCell
     }
     
-
-    func retrieveTaskRankings() -> Array<String> {
-        let sortedArray = self.shareData.userSelectedTasks.sort({$0.0 < $1.0})
-        let tasks: [String] = sortedArray.map {return $0.0 }
-        return tasks
+    // Sorts list of assigned tasks by point value
+    func retrieveTaskRankings(){
+//        let sortedArray = self.shareData.userSelectedTasks.sort({$0.0 < $1.0})
+//        let tasks: [String] = sortedArray.map {return $0.0 }
+//        return tasks
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let sortedTasks = retrieveTaskRankings()
         
         let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
             print("Completed Button Tapped")
-            let pointsGained = self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!
+            
+            // Find out your new point total
+            let pointsGained = self.localAssignedTasks[indexPath.row].points
             let newPoints = self.currentPoints + pointsGained
             
+            // Update it on Firebase
             let pointsRef = Firebase(url: self.shareData.getPointsUrl())
             pointsRef.setValue(newPoints)
             
+            // Update it in the UI
             self.currentPoints = newPoints
             
+            // Update rankings?
             self.shareData.roommateRankings[self.userNameLabel.text!] = newPoints
             self.shareData.roommateRankingsChanged = true
             self.shareData.bestRoommate = true // TODO implement logic for determining best roommate
             
+            // Animate the change
             UIView.transitionWithView(self.userPoints, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
                     self.userPoints.text = "+" +  String(newPoints)
                 }, completion: {
                     (value: Bool) in
             })
             
-                self.shareData.userSelectedTasks.removeValueForKey(sortedTasks[indexPath.row])
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            // Remove from Firebase
+            let assignedTaskRef = Firebase(url: self.shareData.getPersonalTasksUrl() + "/" + self.localAssignedTasks[indexPath.row].taskId)
+            assignedTaskRef.removeValue()
+            
+            // Remove from local queue
+            self.localAssignedTasks.removeAtIndex(indexPath.row)
+            
+            // Remove from table
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
+        
         task.backgroundColor = UIColor.lightGrayColor()
         return [task]
     }
