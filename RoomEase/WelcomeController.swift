@@ -19,6 +19,19 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     * Conformation for UIView Controller
     */
     override func viewDidLoad() {
+        
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        imageViewBackground.image = UIImage(named: "stairsLoft.jpg")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
+    
         super.viewDidLoad()
         let fbBtn = FBSDKLoginButton()
         fbBtn.readPermissions = ["public_profile", "email", "user_friends"]
