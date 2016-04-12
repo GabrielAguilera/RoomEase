@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
         
-        self.shareData.get_roomate_rankings(self.shareData.currentHomeId, callback: {(pulled_rankings) in
+        self.shareData.get_roomate_rankings({(pulled_rankings) in
             for tuple in pulled_rankings {
                 self.shareData.roommateRankings[tuple.0] = tuple.1
             }
@@ -43,12 +43,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     override func viewDidAppear(animated: Bool) {
-        if(self.shareData.roommateRankingsChanged && self.homeSegmentedControl.selectedSegmentIndex == 0) {
+        if(self.homeSegmentedControl.selectedSegmentIndex == 0) {
+            self.shareData.get_roomate_rankings({(pulled_rankings) in
+                for tuple in pulled_rankings {
+                    self.shareData.roommateRankings[tuple.0] = tuple.1
+                }
+                self.taskTableView.reloadData()
+            })
+            self.taskTableView.reloadData()
             tableUpdateForRoommateRankings()
         }
-        else {
-            taskTableView.reloadData()
-        }
+        taskTableView.reloadData()
     }
     
 

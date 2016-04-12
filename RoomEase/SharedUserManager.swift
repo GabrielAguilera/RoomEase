@@ -101,7 +101,7 @@ class ShareData {
 //  ShareData().get_roomate_rankings("home1", callback: { (roomates:[(String,Int)]) in
 //      print(roomates)
 //  })
-    func get_roomate_rankings(homeID:String, callback:([(String, Int)]) -> Void) {
+    func get_roomate_rankings(callback:([(String, Int)]) -> Void) {
         self.roommateRankings.removeAll()
         let ref = Firebase(url: self.ROOT_URL + "users")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -111,7 +111,7 @@ class ShareData {
                 let user = item as! FDataSnapshot
                 
                 let user_home = String(user.childSnapshotForPath("homeId").value)
-                if (homeID == user_home) {
+                if (self.currentHomeId == user_home) {
                     //get the username from the tuple
                     let user_points = Int(String(user.childSnapshotForPath("points").value))
                     let userName = String(user.childSnapshotForPath("name").value)                    
