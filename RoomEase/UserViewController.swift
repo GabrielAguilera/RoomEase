@@ -23,18 +23,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var shareData = ShareData.sharedInstance
     
-    struct Task {
-        let title : String
-        let points : Int
-        let taskId : String
-        
-        init(title: String, points: Int, taskId: String){
-            self.title = title
-            self.points = points
-            self.taskId = taskId
-        }
-    }
-    
     var localAssignedTasks: [Task] = []
     var currentPoints: Int = 0
 
@@ -76,11 +64,13 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for task in assignedTasks.children {
                 // Rebuild our local copy of the list
                 let taskTitle:String = task.value!!.objectForKey("title") as! String
+                let taskAssignee: String = task.value!!.objectForKey("assignee") as! String
                 let taskPoints:Int = task.value!!.objectForKey("points") as! Int
                 let taskID:String = task.key!! as String
                 
                 self.localAssignedTasks.append(
                     Task(title: taskTitle,
+                        assignee: taskAssignee,
                         points: taskPoints,
                         taskId:  taskID))
             }
