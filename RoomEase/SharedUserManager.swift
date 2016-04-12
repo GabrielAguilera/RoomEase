@@ -59,7 +59,7 @@ class ShareData {
     func get_roomate_rankings(callback:([(String, Int)]) -> Void) {
         self.roommateRankings.removeAll()
         let ref = Firebase(url: self.ROOT_URL + "users")
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        ref.observeEventType(.Value, withBlock: { snapshot in
            // var roomate_scores = [String:Int]()
             //This loop builds the array from the Firebase snap
             for item in snapshot.children {
@@ -91,7 +91,7 @@ class ShareData {
     //example usage:
     //--------------
     //ShareData().push_task(["homeId":"home1", "points": "5", "title": "test"])
-    func push_task(var values:[String:String]) {
+    func push_task(values:[String:String]) {
         let ref = Firebase(url: self.ROOT_URL + "tasks")
         //TODO: throw error here
         if (values["homeId"] == nil || values["points"] == nil || values["title"] == nil) {

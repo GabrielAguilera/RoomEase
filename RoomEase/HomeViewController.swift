@@ -104,17 +104,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     override func viewDidAppear(animated: Bool) {
-        if(self.homeSegmentedControl.selectedSegmentIndex == 0) {
-            self.shareData.get_roomate_rankings({(pulled_rankings) in
-                for tuple in pulled_rankings {
-                    self.shareData.roommateRankings[tuple.0] = tuple.1
-                }
-                self.taskTableView.reloadData()
-            })
-            self.taskTableView.reloadData()
-            tableUpdateForRoommateRankings()
-        }
-        taskTableView.reloadData()
     }
     
 
