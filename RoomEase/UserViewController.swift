@@ -41,6 +41,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /* Conformation for UIViewController Protocol */
     
     override func viewDidLoad() {
+        /*sets label auto size adjustments*/
+        userPoints.adjustsFontSizeToFitWidth=true
+        userPoints.minimumScaleFactor=0.5
+        userNameLabel.adjustsFontSizeToFitWidth=true
+        userNameLabel.minimumScaleFactor=0.5
+        
         fbButton.delegate = self
         
         // Load up the image
