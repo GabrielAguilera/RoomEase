@@ -278,25 +278,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func saveTaskDetail(segue:UIStoryboardSegue) {
-//        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
-//            
-//            // error handling for duplicate tasks
-//            if let task = taskViewDetailController.task {
-////                if((self.shareData.taskList[task.name!]) != nil) {
-//                    let alert = UIAlertView()
-//                    alert.title = "Whoops!"
-//                    alert.message = "We think this is already a task in the house."
-//                    alert.addButtonWithTitle("Ok")
-//                    alert.show()
-//                }
-//                else {
-//                    self.shareData.taskList[task.name!] = task.pointVal
-//                    //update the tableView
-//                    let indexPath = NSIndexPath(forRow: self.shareData.taskList.count-1, inSection: 0)
-//                taskTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//                }
-//            }
-//        }
+        if let taskViewDetailController = segue.sourceViewController as? TaskViewDetailController {
+            
+            // error handling for duplicate tasks
+            if let task = taskViewDetailController.task {
+                // Check all the titles
+                for existingTask in self.localTaskList {
+                    if existingTask.title == task.name {
+                        let alert = UIAlertView()
+                        alert.title = "Whoops!"
+                        alert.message = "We think this is already a task in the house."
+                        alert.addButtonWithTitle("Ok")
+                        alert.show()
+                        return
+                    }
+                }
+
+                let newTask = ["title": task.name!, "points": task.pointVal]
+                let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
+                let newTaskRef = taskRef.childByAutoId()
+                newTaskRef.setValue(newTask)
+            }
+        }
     }
 }
 
