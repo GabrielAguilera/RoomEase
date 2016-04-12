@@ -81,6 +81,28 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // Refresh the table
             self.userTaskTable.reloadData()
         })
+        
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        imageViewBackground.image = UIImage(named: "stairsLoft.jpg")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageViewBackground.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        imageViewBackground.addSubview(blurEffectView)
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
+
+        
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -117,8 +139,9 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
 
         let pointValue = String(self.localAssignedTasks[indexPath.row].points)
-        let cellText = pointValue + "  |   " + self.localAssignedTasks[indexPath.row].title
+        let cellText = self.localAssignedTasks[indexPath.row].title
         myCell.textLabel!.text = cellText
+        myCell.detailTextLabel!.text = pointValue + " points"
         return myCell
     }
     
