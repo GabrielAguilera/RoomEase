@@ -205,7 +205,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Add to personal queue
             let personalTasksRef = Firebase(url: self.shareData.getPersonalTasksUrl())
             let newPersonalTaskRef = personalTasksRef.childByAutoId()
-            let personalTask = [ "title": self.localTaskList[indexPath.row].title, "points": self.localTaskList[indexPath.row].points]
+            let personalTask = [ "title": self.localTaskList[indexPath.row].title, "points": self.localTaskList[indexPath.row].points, "assignee": self.localTaskList[indexPath.row].assignee]
             newPersonalTaskRef.setValue(personalTask)
             
             // Remove from home queue
@@ -290,7 +290,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
 
-                let newTask = ["title": task.title, "points": task.points]
+                let newTask = ["title": task.title, "points": task.points, "assignee": task.assignee]
                 let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
                 let newTaskRef = taskRef.childByAutoId()
                 newTaskRef.setValue(newTask)
