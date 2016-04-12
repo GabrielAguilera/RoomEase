@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var homeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var addTaskButton: UIButton!
-    @IBOutlet weak var bestRoommateLabel: UILabel!
     @IBOutlet weak var welcomeHomeLabel: UILabel!
     
     let shareData = ShareData.sharedInstance
@@ -158,12 +157,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
-            if(self.shareData.bestRoommate) {
-                bestRoommateLabel.hidden = false
-            }
-            else {
-                bestRoommateLabel.hidden = true
-            }
             break
             
         case 1:
@@ -171,7 +164,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cellText = pointValue + "  |   " + self.localTaskList[indexPath.row].title
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
-            bestRoommateLabel.hidden = true
             break
             
         default:
