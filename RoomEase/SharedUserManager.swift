@@ -49,27 +49,6 @@ class ShareData {
         return ROOT_URL + "home/" + currentHomeId + "/tasks"
     }
     
-//    Gives tasks as (unique_key, dictionary)
-//    Usage example
-//    -------------
-//    ShareData().get_user_tasks("mgild", callback: { (tasks:[String: NSDictionary]) in
-//        print(tasks)
-//    })
-    func get_user_tasks(username:String, callback:([String: NSDictionary]) -> Void) {
-        let ref = Firebase(url: self.ROOT_URL + "tasks")
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            var tasks = [String: NSDictionary]()
-            let enumerator = snapshot.children
-            while let child = enumerator.nextObject() as? FDataSnapshot {
-                let task = child.value as! NSDictionary
-                if (task["assignedTo"] != nil && String(task["assignedTo"]!) == username){
-                    tasks[child.key!] = task
-                }
-            }
-            callback(tasks)
-        })
-    }
-    
     //for some reason could not get the firebase sort to work
     //sorting by value myself
     //currently uses callback that returns an array of tuples (User, score) pairs
@@ -121,14 +100,5 @@ class ShareData {
         }
         //automatically creates a unique ID for the task
         ref.childByAutoId().setValue(values)
-    }
-    
-
-    //example usage:
-    //--------------
-    //ShareData().assign_task("-KESJq2Rxv8AhbIjjDNE", user: "mgild")
-    func assign_task(task_key:String, user:String) {
-        let ref = Firebase(url: self.ROOT_URL + "tasks/" + task_key)
-        ref.updateChildValues(["assignedTo": user])
     }
 }
