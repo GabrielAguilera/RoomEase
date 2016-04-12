@@ -69,10 +69,14 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             for task in assignedTasks.children {
                 // Rebuild our local copy of the list
+                let taskTitle:String = task.value!!.objectForKey("title") as! String
+                let taskPoints:Int = task.value!!.objectForKey("points") as! Int
+                let taskID:String = task.key!! as String
+                
                 self.localAssignedTasks.append(
-                    Task(title: task.value.objectForKey("title") as! String,
-                        points: task.value.objectForKey("points") as! Int,
-                        taskId: task.key as String))
+                    Task(title: taskTitle,
+                        points: taskPoints,
+                        taskId:  taskID))
             }
             
             // Re-sort the list

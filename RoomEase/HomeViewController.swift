@@ -57,10 +57,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             for task in openTasks.children {
                 // Rebuild our local copy of the list
+                
+                let taskTitle:String = task.value!!.objectForKey("title") as! String
+                let taskPoints:Int = task.value!!.objectForKey("points") as! Int
+                let taskID:String = task.key!! as String
+                
                 self.localTaskList.append(
-                    Task(title: task.value.objectForKey("title") as! String,
-                        points: task.value.objectForKey("points") as! Int,
-                        taskId: task.key as String))
+                    Task(title: taskTitle,
+                        points: taskPoints,
+                        taskId:  taskID)
+                )
             }
             
             // Re-sort the list
@@ -154,8 +160,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (indexPath.row >= self.shareData.roommateRankings.count) {
             return myCell
         }
-        
-        
         let sortedNames = retrieveRoommateRankings()
 
         switch(homeSegmentedControl.selectedSegmentIndex)
@@ -163,7 +167,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
             let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
-            
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = true
             if(self.shareData.bestRoommate) {
@@ -177,7 +180,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 1:
             let pointValue = String(self.localTaskList[indexPath.row].points)
             let cellText = pointValue + "  |   " + self.localTaskList[indexPath.row].title
-            
             myCell.textLabel!.text = cellText
             addTaskButton.hidden = false
             bestRoommateLabel.hidden = true
@@ -233,6 +235,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func segmentedControlActionChanged(sender: AnyObject) {
+        if(homeSegmentedControl.selectedSegmentIndex == 0) {
+            addTaskButton.hidden = true
+        }
+        if(homeSegmentedControl.selectedSegmentIndex == 1) {
+            addTaskButton.hidden = false
+        }
+        
+        
         if(self.shareData.roommateRankingsChanged) {
             tableUpdateForRoommateRankings()
         }
@@ -266,10 +276,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 },
                 completion: nil);
             shareData.roommateRankingsChanged = false
-        if(self.homeSegmentedControl.selectedSegmentIndex == 0 && self.shareData.bestRoommate) {
-            bestRoommateLabel.hidden = false
-            self.shareData.bestRoommate = false
-        }
     }
 
     
