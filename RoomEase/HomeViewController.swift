@@ -20,19 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var welcomeHomeLabel: UILabel!
     
     let shareData = ShareData.sharedInstance
-    
-    struct Task {
-        let title : String
-        let points : Int
-        let taskId : String
-        
-        init(title: String, points: Int, taskId: String){
-            self.title = title
-            self.points = points
-            self.taskId = taskId
-        }
-    }
-    
+
     var localTaskList: [Task] = []
     
     override func viewDidLoad() {
@@ -60,10 +48,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 let taskTitle:String = task.value!!.objectForKey("title") as! String
                 let taskPoints:Int = task.value!!.objectForKey("points") as! Int
+                let taskAssignee:String = task.value!!.objectForKey("assignee") as! String
                 let taskID:String = task.key!! as String
                 
                 self.localTaskList.append(
                     Task(title: taskTitle,
+                        assignee: taskAssignee,
                         points: taskPoints,
                         taskId:  taskID)
                 )
@@ -290,7 +280,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let task = taskViewDetailController.task {
                 // Check all the titles
                 for existingTask in self.localTaskList {
-                    if existingTask.title == task.name {
+                    if existingTask.title == task.title {
                         let alert = UIAlertView()
                         alert.title = "Whoops!"
                         alert.message = "We think this is already a task in the house."
@@ -300,7 +290,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
 
-                let newTask = ["title": task.name!, "points": task.pointVal]
+                let newTask = ["title": task.title, "points": task.points]
                 let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
                 let newTaskRef = taskRef.childByAutoId()
                 newTaskRef.setValue(newTask)

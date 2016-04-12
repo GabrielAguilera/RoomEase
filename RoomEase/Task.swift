@@ -10,16 +10,18 @@ import Foundation
 
 import UIKit
 
+
 struct Task {
-    var name: String?
-    var assigner: String?
-    var assignee: String?
-    var pointVal: Int
+    let title : String
+    var assignee: String = ""
+    let points : Int
+    let taskId : String
     
-    init(name: String?, assigner: String?, assignee: String?, points: Int) {
-        self.name = name
-        self.assigner = assigner
+    init(title: String, assignee: String, points: Int, taskId: String){
+        self.title = title
         self.assignee = assignee
-        self.pointVal = points
+        self.points = points
+        self.taskId = taskId
     }
 }
+    

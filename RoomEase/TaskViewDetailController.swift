@@ -22,6 +22,7 @@ class TaskViewDetailController: UITableViewController {
     let shareData = ShareData.sharedInstance
     
     
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var pointTextField: UITextField!
@@ -81,7 +82,7 @@ class TaskViewDetailController: UITableViewController {
                 return false
             }
 
-            task = Task(name: nameTextField.text, assigner:self.shareData.currentUser, assignee: self.assignee, points: Int(pointTextField.text!)!)
+            task = Task(title: nameTextField.text!, assignee: self.assignee, points: Int(pointTextField.text!)!, taskId:"tempTaskPLEASECHANGE")
             return true
         }
         else if(identifier == "PickRoommate") {
