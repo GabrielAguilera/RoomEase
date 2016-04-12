@@ -42,7 +42,7 @@ class ShareData {
     }
     
     func getPersonalTasksUrl() -> String {
-        return ROOT_URL + "users/" + currentUserId + "/tasks/"
+        return ROOT_URL + "users/" + currentUserId + "/tasks"
     }
     
     func getHomeTasksUrl() -> String {

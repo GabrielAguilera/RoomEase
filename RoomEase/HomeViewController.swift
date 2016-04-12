@@ -24,10 +24,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     struct Task {
         let title : String
         let points : Int
+        let taskId : String
         
-        init(title: String, points: Int){
+        init(title: String, points: Int, taskId: String){
             self.title = title
             self.points = points
+            self.taskId = taskId
         }
     }
     
@@ -43,6 +45,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.welcomeHomeLabel.text = "Welcome Home \(firstName)!"
 
+        // Comment the line below back in when you need some tasks
+//        self.populateTasks()
+        
         // Set Firebase up to observe the list of open tasks
         let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
         taskRef.observeEventType(FEventType.Value, withBlock: { openTasks in
@@ -54,7 +59,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // Rebuild our local copy of the list
                 self.localTaskList.append(
                     Task(title: task.value.objectForKey("title") as! String,
-                        points: task.value.objectForKey("points") as! Int))
+                        points: task.value.objectForKey("points") as! Int,
+                        taskId: task.key as String))
             }
             
             // Re-sort the list
@@ -71,6 +77,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.taskTableView.reloadData()
         })
         self.taskTableView.reloadData()
+    }
+    
+    // Helper function for when I need some tasks in the house.
+    func populateTasks() {
+        let lTaskList: NSMutableArray = []
+        let task1 = ["title": "Clean kitchen after party", "points": 50]
+        let task2 = ["title": "Clean upstairs bathroom", "points": 35]
+        
+        lTaskList.addObject(task1)
+        lTaskList.addObject(task2)
+        
+        let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
+        
+        for task in lTaskList {
+            let newTaskRef = taskRef.childByAutoId()
+            newTaskRef.setValue(task)
+        }
     }
     
     
@@ -186,9 +209,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let task = UITableViewRowAction(style: .Normal, title: "Add to My Tasks") { action, index in
             print("Add Task button tapped")
-//            self.shareData.userSelectedTasks[indexPath.row]] = self.taskList[sortedTasks[indexPath.row]]
-//            self.taskList.removeValueForKey(sortedTasks[indexPath.row])
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+            // Add to personal queue
+            let personalTasksRef = Firebase(url: self.shareData.getPersonalTasksUrl())
+            let newPersonalTaskRef = personalTasksRef.childByAutoId()
+            let personalTask = [ "title": self.localTaskList[indexPath.row].title, "points": self.localTaskList[indexPath.row].points]
+            newPersonalTaskRef.setValue(personalTask)
+            
+            // Remove from home queue
+            let homeTaskRef = Firebase(url: self.shareData.getHomeTasksUrl() + "/" + self.localTaskList[indexPath.row].taskId)
+            homeTaskRef.removeValue()
+            
+            // Remove from local queue
+            self.localTaskList.removeAtIndex(indexPath.row)
+            
+            // Remove from table
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
         task.backgroundColor = UIColor.lightGrayColor()
         
