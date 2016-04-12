@@ -21,33 +21,34 @@ class CreateHomeViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         } else {
-            createHome(homeNameTextBox.text!)
-            self.performSegueWithIdentifier("HomeCreatedSegue", sender: nil)
+            createHome()
         }
     }
     
-    func createHome(homeName:String)
+    func createHome()
     {
-        let newHome = ["members": self.shareData.currentUserId, "name": homeName]
+        let homeId = homeNameTextBox.text!
         // send request to firebase to get a new homecode
         // the slash at the end is super important. If you omit it, you
         // overwrite the whole endpoint
-        let ref = Firebase(url: self.shareData.ROOT_URL + "home/")
-        let newHomeRef = ref.childByAutoId()
-        newHomeRef.setValue(newHome)
-        move_in_home(newHomeRef.key)
-    }
-    
-    //example usage:
-    //--------------
-    //ShareData().move_in_home("-KEyX2WtxopzmABJVucQ)
-    func move_in_home(newHomeId:String)
-    {
-        var ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId + "/inHome")
-        ref.setValue(true)
-        
-        ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId + "/homeId")
-        ref.setValue(newHomeId)
-        self.shareData.currentHomeId = newHomeId
+        let ref = Firebase(url: self.shareData.ROOT_URL + "home/" + homeId)
+        ref.observeSingleEventOfType(FEventType.Value, withBlock: { homeObj in
+            if homeObj.value is NSNull {
+                // Home doesn't exist so create it!
+                let newHome = ["members": [self.shareData.currentUserId], "name": homeId]
+                let newHomeRef = Firebase(url: self.shareData.ROOT_URL + "home/" + homeId)
+                newHomeRef.setValue(newHome)
+
+                let joinRef = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId + "/homeId")
+                joinRef.setValue(homeId)
+                self.shareData.currentHomeId = homeId
+                
+                self.performSegueWithIdentifier("HomeCreatedSegue", sender: nil)
+            } else {
+                // Alert user that this home already exists
+                let alertController = UIAlertController(title: "Home Exists!", message: "Please enter a different home name to continue!", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            }
+        })
     }
 }

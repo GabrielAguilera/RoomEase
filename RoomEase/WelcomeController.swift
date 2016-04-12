@@ -92,12 +92,8 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
             } else {
                 print("This user has been in the application before.")
 
-                // Check if they're in a home already on firebase
-                //let inHome = snapshot.value.objectForKey("homeId") as! Bool
-                //print("inHome: \(inHome)")
-                
-                
-                if(ref.childByAppendingPath("homeId") != nil) {
+                // Check if they're in a home already on firebase                
+                if snapshot.hasChild("homeId") {
                     print("This user is in already in a home.")
                     self.shareData.currentHomeId = snapshot.value.objectForKey("homeId") as! String
                     self.performSegueWithIdentifier("LoggedInExistingSegue", sender: nil)
@@ -111,7 +107,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     
     func createUser()
     {
-        let data = ["name": self.shareData.currentUser, "inHome": false, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
+        let data = ["name": self.shareData.currentUser, "photo_url": self.shareData.currentUserPhotoUrl, "points": 0]
         let ref = Firebase(url: self.shareData.ROOT_URL + "users/" + self.shareData.currentUserId)
         ref.setValue(data)
     }
