@@ -20,7 +20,7 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.hidden = true
         let fbBtn = FBSDKLoginButton()
         fbBtn.readPermissions = ["public_profile", "email", "user_friends"]
         fbBtn.center = self.view.center

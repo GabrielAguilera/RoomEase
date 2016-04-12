@@ -407,8 +407,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKn-nr-HqH">
-                                <rect key="frame" x="176" y="244" width="249" height="30"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKn-nr-HqH">
+                                <rect key="frame" x="176" y="379" width="249" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
                                 <state key="normal" title="Join an existing home"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="76" y="219" width="249" height="30"/>
@@ -418,7 +419,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udC-QB-wnT">
-                                <rect key="frame" x="176" y="282" width="249" height="30"/>
+                                <rect key="frame" x="176" y="458" width="249" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
                                 <state key="normal" title="Create a home"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="76" y="257" width="249" height="30"/>
@@ -427,8 +429,8 @@
                                     <segue destination="Ubj-GY-jOo" kind="show" id="S1F-5F-nps"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to RoomEase!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUC-In-f0R">
-                                <rect key="frame" x="125" y="61" width="351" height="49"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RoomEase" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUC-In-f0R">
+                                <rect key="frame" x="124" y="276" width="351" height="49"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="36"/>
                                 <color key="textColor" red="0.1333333333" green="1" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -471,7 +473,7 @@
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Home Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6g-Gy-84m">
-                                <rect key="frame" x="191" y="223" width="219" height="30"/>
+                                <rect key="frame" x="168" y="223" width="265" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -479,9 +481,9 @@
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LY-fg-dHA">
-                                <rect key="frame" x="268" y="261" width="65" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
-                                <state key="normal" title="Join Home"/>
+                                <rect key="frame" x="170" y="261" width="260" height="40"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="23"/>
+                                <state key="normal" title="Enter"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="253" y="261" width="95" height="30"/>
                                 </variation>
@@ -502,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hY-M6-OdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607.5" y="-494"/>
+            <point key="canvasLocation" x="607" y="-494"/>
         </scene>
         <!--Create Home-->
         <scene sceneID="kFs-2t-Im4">
@@ -525,18 +527,10 @@
                                     <rect key="frame" x="82" y="64" width="237" height="39"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home Name" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-V7-EWI">
-                                <rect key="frame" x="209" y="225" width="182" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="109" y="151" width="182" height="30"/>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1Z-VQ-FKC">
-                                <rect key="frame" x="249" y="263" width="102" height="45"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
-                                <state key="normal" title="Create Home"/>
+                                <rect key="frame" x="211" y="263" width="179" height="45"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="23"/>
+                                <state key="normal" title="Enter"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="149" y="189" width="102" height="45"/>
                                 </variation>
@@ -544,6 +538,14 @@
                                     <action selector="createButtonPressed:" destination="Ubj-GY-jOo" eventType="touchUpInside" id="ouL-2t-Kfv"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home Name" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ik6-V7-EWI">
+                                <rect key="frame" x="157" y="225" width="286" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="109" y="151" width="182" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -581,7 +583,7 @@
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XVA-h9-Z3P"/>
+        <segue reference="rIB-R5-y5b"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0020758656089999998" green="1" blue="0.67872908890000005" alpha="1" colorSpace="calibratedRGB"/>
 </document>
