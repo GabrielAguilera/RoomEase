@@ -29,6 +29,9 @@ class ShareData {
     let ROOT_URL:String = "https://fiery-heat-3695.firebaseio.com/"
     var roommateRankings: [String:Int] = [:]
     
+    var roommateIDs: [String:String] = [:]
+    
+    
     var roommateRankingsChanged = false
     var bestRoommate = false
     var currentUser:String = ""
@@ -44,6 +47,10 @@ class ShareData {
         return ROOT_URL + "users/" + currentUserId + "/tasks"
     }
     
+    func getAnotherUsersTaskUrl(roommateName : String) -> String {
+        return ROOT_URL + "users/" + roommateIDs[roommateName]! + "/tasks"
+    }
+
     func getHomeTasksUrl() -> String {
         return ROOT_URL + "home/" + currentHomeId + "/tasks"
     }
@@ -69,7 +76,9 @@ class ShareData {
                 if (self.currentHomeId == user_home) {
                     //get the username from the tuple
                     let user_points = Int(String(user.childSnapshotForPath("points").value))
-                    let userName = String(user.childSnapshotForPath("name").value)                    
+                    let userName = String(user.childSnapshotForPath("name").value)
+                    let userID = String(user.key)
+                    self.roommateIDs[userName] = userID
                     self.roommateRankings[userName] = user_points
                 }
             }

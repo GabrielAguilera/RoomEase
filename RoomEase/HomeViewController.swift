@@ -293,11 +293,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         return
                     }
                 }
-
                 let newTask = ["title": task.title, "points": task.points, "assignee": task.assignee]
-                let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
-                let newTaskRef = taskRef.childByAutoId()
-                newTaskRef.setValue(newTask)
+                
+                if(task.assignee != "") {
+                    // Add to personal queue
+                    let personalTasksRef = Firebase(url: self.shareData.getAnotherUsersTaskUrl(task.assignee))
+                    let newPersonalTaskRef = personalTasksRef.childByAutoId()
+                    let personalTask = newTask
+                    newPersonalTaskRef.setValue(personalTask)
+
+                }
+                else {
+                    let taskRef = Firebase(url: self.shareData.getHomeTasksUrl())
+                    let newTaskRef = taskRef.childByAutoId()
+                    newTaskRef.setValue(newTask)
+                }
+
             }
         }
     }
