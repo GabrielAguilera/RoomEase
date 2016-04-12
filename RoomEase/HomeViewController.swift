@@ -82,6 +82,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.taskTableView.reloadData()
         })
         self.taskTableView.reloadData()
+        
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
+        imageViewBackground.image = UIImage(named: "stairsLoft.jpg")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageViewBackground.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        imageViewBackground.addSubview(blurEffectView)
+        
+        self.view.addSubview(imageViewBackground)
+        self.view.sendSubviewToBack(imageViewBackground)
+
+        
+        
+        
+        
     }
     
     // Helper function for when I need some tasks in the house.
@@ -153,7 +176,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
-        
 //        // Returns a dummy cell if there's more cells visible than there is 
 //        // useful data to display.
 //        if (indexPath.row >= self.shareData.roommateRankings.count) {
@@ -165,15 +187,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         {
         case 0:
             let pointValue = String(self.shareData.roommateRankings[sortedNames[indexPath.row]]!)
-            let cellText = pointValue + "  |   " + sortedNames[indexPath.row]
+            let cellText = sortedNames[indexPath.row]
             myCell.textLabel!.text = cellText
+            myCell.detailTextLabel!.text = pointValue + " points"
             addTaskButton.hidden = true
             break
             
         case 1:
             let pointValue = String(self.localTaskList[indexPath.row].points)
-            let cellText = pointValue + "  |   " + self.localTaskList[indexPath.row].title
-            myCell.textLabel!.text = cellText
+            myCell.textLabel!.text = self.localTaskList[indexPath.row].title
+            myCell.detailTextLabel!.text = pointValue + " points"
             addTaskButton.hidden = false
             break
             
