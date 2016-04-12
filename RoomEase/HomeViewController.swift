@@ -155,11 +155,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let myCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
         
-        // Returns a dummy cell if there's more cells visible than there is 
-        // useful data to display.
-        if (indexPath.row >= self.shareData.roommateRankings.count) {
-            return myCell
-        }
+//        // Returns a dummy cell if there's more cells visible than there is 
+//        // useful data to display.
+//        if (indexPath.row >= self.shareData.roommateRankings.count) {
+//            return myCell
+//        }
         let sortedNames = retrieveRoommateRankings()
 
         switch(homeSegmentedControl.selectedSegmentIndex)
