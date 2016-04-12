@@ -38,7 +38,6 @@ class ShareData {
     var currentHomeId:String = ""
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
-    var rootRef = Firebase(url: "https://fiery-heat-3695.firebaseio.com/")
     
 //    Usage example
 //    -------------
@@ -78,26 +77,6 @@ class ShareData {
                 }
             }
             callback(tasks)
-        })
-    }
-    
-    
-    //    Usage example
-    //    -------------
-    //    ShareData().get_user("mgild,{ (user:NSDictionary) in
-    //      //Prints the last task in the task array
-    //      print(user!)
-    //    })
-    //TODO: Username should likely be switched to FacebookID
-    func get_user(fbid:String, callback:(NSDictionary) -> Void) {
-        let ref = Firebase(url: self.ROOT_URL + "users/" + fbid)
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if (!snapshot.exists()) {
-                //gives empty dictionary if user does not exist
-                callback(NSDictionary())
-            } else {
-                callback(snapshot.value as! NSDictionary)
-            }
         })
     }
     
