@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 RoomEase - EECS 441. All rights reserved.
 //
 
+import Firebase
 import FBSDKLoginKit
 import UIKit
 
@@ -21,21 +22,35 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var fbButton: FBSDKLoginButton!
     
     var shareData = ShareData.sharedInstance
+    
+    var currentPoints: Int = 0
 
     /* Conformation for UIViewController Protocol */
     
     override func viewDidLoad() {
-         // Do any additional setup after loading the view, typically from a nib.
-        
-        userNameLabel.text = self.shareData.currentUser
-        if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
-            self.userProfileImage.image = UIImage(data: data)!.circle
-        }
         fbButton.delegate = self
-        userPoints.text = String(self.shareData.roommateRankings[self.shareData.currentUser]!)
+        
+        // Load up the image
+        if let data = NSData(contentsOfURL: NSURL(string: self.shareData.currentUserPhotoUrl)!) {
+            userProfileImage.image = UIImage(data: data)!.circle
+        }
+        
+        // Populate the name label
+        userNameLabel.text = self.shareData.currentUser
+        
+        // This reference will persist even after loading the view and update 
+        // automatically. We just need to animate when it has changed.
+        let pointsRef = Firebase(url: self.shareData.getPointsUrl())
+        pointsRef.observeEventType(FEventType.Value, withBlock: { latestPointsSnapshot in
+            print("Snapshot value: \(latestPointsSnapshot)")
+            self.currentPoints = latestPointsSnapshot.value as! Int
+            self.userPoints.text = "+" + String(self.currentPoints)
+        })
     }
     
     override func viewDidAppear(animated: Bool) {
+        // We should check if their points total has updated since they last 
+        // came here and animate the change.
         userTaskTable.reloadData()
     }
 
@@ -93,16 +108,20 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let task = UITableViewRowAction(style: .Normal, title: "Mark as Complete") { action, index in
             print("Completed Button Tapped")
-            let pointValue = self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!
-            var pointsNum:Int = (self.userPoints.text! as NSString).integerValue
+            let pointsGained = self.shareData.userSelectedTasks[sortedTasks[indexPath.row]]!
+            let newPoints = self.currentPoints + pointsGained
             
-            pointsNum += pointValue
-            self.shareData.roommateRankings[self.userNameLabel.text!] = pointsNum
+            let pointsRef = Firebase(url: self.shareData.getPointsUrl())
+            pointsRef.setValue(newPoints)
+            
+            self.currentPoints = newPoints
+            
+            self.shareData.roommateRankings[self.userNameLabel.text!] = newPoints
             self.shareData.roommateRankingsChanged = true
             self.shareData.bestRoommate = true // TODO implement logic for determining best roommate
             
             UIView.transitionWithView(self.userPoints, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                    self.userPoints.text = "+" +  String(pointsNum)
+                    self.userPoints.text = "+" +  String(newPoints)
                 }, completion: {
                     (value: Bool) in
             })

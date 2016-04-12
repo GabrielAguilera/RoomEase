@@ -39,6 +39,10 @@ class ShareData {
     
     var taskList:[String:Int] = ["Clean kitchen after party":50, "Clean upstairs bathroom":35]
     
+    func getPointsUrl() -> String {
+        return ROOT_URL + "users/" + currentUserId + "/points"
+    }
+    
 //    Usage example
 //    -------------
 //    ShareData().get_open_tasks("home1", callback: { (openTasks:[String:NSDictionary]) in
