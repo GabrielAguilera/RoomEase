@@ -18,6 +18,9 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
     /*
     * Conformation for UIView Controller
     */
+    
+
+    
     override func viewDidLoad() {
         
         let width = UIScreen.mainScreen().bounds.size.width
