@@ -200,6 +200,25 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         task.backgroundColor = UIColor.lightGrayColor()
         return [task]
     }
+
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ViewTaskDetail" {
+           if let destination = segue.destinationViewController as? showTaskDetailViewController {
+            if let taskIndex = userTaskTable.indexPathForSelectedRow?.row {
+                    destination.taskTitle.text = localAssignedTasks[taskIndex].title
+                    destination.assignedTo.text = localAssignedTasks[taskIndex].assignee
+                    destination.pointValue.text = String(self.localAssignedTasks[taskIndex].points)
+                }
+            }
+        }
+    }
+
+
+
+
+
+
 }
 
 extension Dictionary {

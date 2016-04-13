@@ -26,6 +26,13 @@ class WelcomeViewController : UIViewController, FBSDKLoginButtonDelegate {
         let imageViewBackground = UIImageView(frame: CGRectMake(0, 0, width, height))
         imageViewBackground.image = UIImage(named: "stairsLoft.jpg")
         
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = imageViewBackground.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        imageViewBackground.addSubview(blurEffectView)
+        
+        
         // you can change the content mode:
         imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFill
         

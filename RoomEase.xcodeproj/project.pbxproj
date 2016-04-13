@@ -23,6 +23,7 @@
 		A23C1C6C1C8DFCFF00EF327B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */; };
 		A23C1C6E1C8DFD0500EF327B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */; };
 		A23C1C701C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */; };
+		FE32A0A81CBE0CBF00410A4D /* ShowTaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE32A0A71CBE0CBF00410A4D /* ShowTaskDetailViewController.swift */; };
 		FE51E9151C8F43A0004116AA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FE51E9141C8F43A0004116AA /* logo.png */; };
 		FE528EE01CB880E80074D1EF /* RoommatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE528EDF1CB880E80074D1EF /* RoommatePickerViewController.swift */; };
 		FE5FEC951C8DF51700D264D6 /* Soloway_hs.png in Resources */ = {isa = PBXBuildFile; fileRef = FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */; };
@@ -68,6 +69,7 @@
 		A23C1C6B1C8DFCFF00EF327B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A23C1C6D1C8DFD0500EF327B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A23C1C6F1C8DFD0E00EF327B /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		FE32A0A71CBE0CBF00410A4D /* ShowTaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTaskDetailViewController.swift; sourceTree = "<group>"; };
 		FE51E9141C8F43A0004116AA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FE528EDF1CB880E80074D1EF /* RoommatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoommatePickerViewController.swift; path = ../RoommatePickerViewController.swift; sourceTree = "<group>"; };
 		FE5FEC941C8DF51700D264D6 /* Soloway_hs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Soloway_hs.png; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				FE8A0EB51C7F78DF006B4C5C /* Images.xcassets */,
 				FE8A0EB71C7F78DF006B4C5C /* LaunchScreen.xib */,
 				FE8A0EB21C7F78DF006B4C5C /* Main.storyboard */,
+				FE32A0A71CBE0CBF00410A4D /* ShowTaskDetailViewController.swift */,
 				FEA97F171CBBF02A002E2C6C /* WelcomeViewController.swift */,
 				3291F0C51C9F429C00E7F281 /* RoomEaseData.xcdatamodeld */,
 				FE8A0EAA1C7F78DF006B4C5C /* Supporting Files */,
@@ -249,7 +252,7 @@
 				TargetAttributes = {
 					FE8A0EA61C7F78DF006B4C5C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 8D3LLFACDB;
+						DevelopmentTeam = 4J5RU7K988;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 0;
@@ -325,6 +328,7 @@
 				32E1A8341CB9D79A00B4C51D /* CreateHomeViewController.swift in Sources */,
 				3291F0C71C9F429C00E7F281 /* RoomEaseData.xcdatamodeld in Sources */,
 				FED8B7171C8FD11A00CA6CBE /* SharedUserManager.swift in Sources */,
+				FE32A0A81CBE0CBF00410A4D /* ShowTaskDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

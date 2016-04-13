@@ -89,11 +89,24 @@ class TaskViewDetailController: UITableViewController {
             print("entering pick roommate identifier")
             performSegueWithIdentifier("PickRoommate", sender: self)
         }
+        else if(identifier == "cancel") {
+            performSegueWithIdentifier("cancel", sender: self)
+        }
         else {
             print("indentifier is " + identifier)
         }
         return false
     }
+    
+    func loadTaskInfo(inputTask: Task) {
+        nameTextField.text = inputTask.title
+        pointTextField.text = String(inputTask.points)
+        detailLabel.text! = inputTask.assignee
+        
+        
+    }
+    
+    
 
     //Unwind segue
     @IBAction func unwindWithSelectedRoommate(segue:UIStoryboardSegue) {
